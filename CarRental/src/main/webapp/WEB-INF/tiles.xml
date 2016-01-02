@@ -20,6 +20,9 @@
 		<put-attribute name="title" value="Car {1}"></put-attribute>
 	</definition>
 	
-
+	<definition name="home" extends="base.definition">
+		<put-attribute name="body" value="/views/home.jsp"></put-attribute>
+		<put-attribute name="title" value="Home"></put-attribute>
+	</definition>
 
 </tiles-definitions>
