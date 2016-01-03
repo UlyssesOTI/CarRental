@@ -27,6 +27,7 @@ public class Car {
 	private GearBox gearBox;
 	private Color color;
 	private double dayPrice;
+	private byte[] image;
 	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
 	private Model model;
 	@OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY, mappedBy = "car")
@@ -36,9 +37,7 @@ public class Car {
 		// TODO Auto-generated constructor stub
 	}
 	
-	
-
-	public Car(String regNumber, Date regDate, int seats, GearBox gearBox, Color color, double dayPrice) {
+	public Car(String regNumber, Date regDate, int seats, GearBox gearBox, Color color, double dayPrice, byte[] image) {
 		super();
 		this.regNumber = regNumber;
 		this.regDate = regDate;
@@ -46,9 +45,8 @@ public class Car {
 		this.gearBox = gearBox;
 		this.color = color;
 		this.dayPrice = dayPrice;
+		this.image = image;
 	}
-
-
 
 	public int getSeats() {
 		return seats;
@@ -136,6 +134,18 @@ public class Car {
 	public String toString() {
 		return "Car [regNumber=" + regNumber + ", regDate=" + regDate + ", seats=" + seats + ", gearBox=" + gearBox
 				+ ", color=" + color + ", dayPrice=" + dayPrice + "]";
+	}
+
+
+
+	public byte[] getImage() {
+		return image;
+	}
+
+
+
+	public void setImage(byte[] image) {
+		this.image = image;
 	}
 
 	

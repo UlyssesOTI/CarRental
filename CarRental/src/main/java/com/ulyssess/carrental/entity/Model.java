@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import com.ulyssess.carrental.enums.GearBox;
 import com.ulyssess.carrental.enums.ModelClass;
 
 @Entity
@@ -21,6 +20,7 @@ public class Model {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String modelName;
+	private byte[] image;
 	private ModelClass modelClass;
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
 	private Mark mark;
@@ -32,11 +32,15 @@ public class Model {
 		
 	}
 		
-	public Model(String modelName, ModelClass modelClass, int seats, GearBox gearBox) {
+	public Model(String modelName, byte[] image, ModelClass modelClass, Mark mark) {
 		super();
 		this.modelName = modelName;
+		this.image = image;
 		this.modelClass = modelClass;
+		this.mark = mark;
 	}
+
+
 
 	public int getId() {
 		return id;
@@ -78,11 +82,12 @@ public class Model {
 		this.cars = cars;
 	}
 
-
-	@Override
-	public String toString() {
-		return "Model [id=" + id + ", modelName=" + modelName + ", modelClass=" + modelClass + "]";
+	public byte[] getImage() {
+		return image;
 	}
-	
+
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
 		
 }

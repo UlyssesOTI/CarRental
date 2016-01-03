@@ -6,7 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 </head>
-<body>
-<h1>FOOTER</h1>
-</body>
+	<body>
+		<div class="footer">
+			 
+		</div>
+	</body>
 </html>

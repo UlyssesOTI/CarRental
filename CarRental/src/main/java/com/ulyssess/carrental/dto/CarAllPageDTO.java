@@ -12,17 +12,15 @@ public class CarAllPageDTO {
 	private String gearBox;
 	private String color;
 	private String modelName;
+	private String image;
 	
 	public CarAllPageDTO() {
 		
 	}
 	
 	
-	
-
-
 	public CarAllPageDTO(int id, String regNumber, String regDate, int seats, Double dayPrice, String gearBox,
-			String color, String modelName) {
+			String color, String modelName, String base64Encoded) {
 		super();
 		this.id = id;
 		this.regNumber = regNumber;
@@ -32,10 +30,8 @@ public class CarAllPageDTO {
 		this.gearBox = gearBox;
 		this.color = color;
 		this.modelName = modelName;
+		this.image = base64Encoded;
 	}
-
-
-
 
 
 	public int getId() {
@@ -95,5 +91,12 @@ public class CarAllPageDTO {
 		this.dayPrice = dayPrice;
 	}
 
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
 	
 }

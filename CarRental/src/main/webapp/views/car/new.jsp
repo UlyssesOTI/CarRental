@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <body>
-	<form action="showAllCars" method="post">
+	<form action="showAllCars" method="post" enctype="multipart/form-data" >
 		regNumber: <input type="text" name="regNumber">
 		regDate: <input type="text" name="regDate">
 		seats: <input type="text" name="seats">
@@ -26,7 +26,15 @@
 			</c:forEach>
 		</select>
    		
-	
+   		
+   		
+					      Upload image:
+					      <input type="file" name="file" />
+					      
+				          <input type="submit" value="upload" />
+				          
+					   
+       	
 		dayPrice: <input type="text" name="dayPrice">
 		
 		<button type="submit">Save</button>

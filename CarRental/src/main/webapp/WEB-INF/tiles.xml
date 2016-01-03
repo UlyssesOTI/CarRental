@@ -12,15 +12,24 @@
 	<definition name="base.definition" template="/views/tiles/layout.jsp">
 		<put-attribute name="header" value="/views/tiles/header.jsp"></put-attribute>
 		<put-attribute name="footer" value="/views/tiles/footer.jsp"></put-attribute>
-		<put-attribute name="body" value=""></put-attribute>		
+		<put-attribute name="body" value=""></put-attribute>	
+		<put-attribute name="menu" value=""></put-attribute>	
 	</definition>
 	
 	<definition name="car-*" extends="base.definition">
+		<put-attribute name="menu" value="/views/manager/mainMenu.jsp"></put-attribute>
 		<put-attribute name="body" value="/views/car/{1}.jsp"></put-attribute>
 		<put-attribute name="title" value="Car {1}"></put-attribute>
 	</definition>
 	
+	<definition name="manager-*" extends="base.definition">
+		<put-attribute name="menu" value="/views/manager/mainMenu.jsp"></put-attribute>
+		<put-attribute name="body" value="/views/manager/{1}.jsp"></put-attribute>
+		<put-attribute name="title" value="Manager {1}"></put-attribute>
+	</definition>
+	
 	<definition name="home" extends="base.definition">
+		<put-attribute name="menu" value="/views/homeMenu.jsp"></put-attribute>
 		<put-attribute name="body" value="/views/home.jsp"></put-attribute>
 		<put-attribute name="title" value="Home"></put-attribute>
 	</definition>

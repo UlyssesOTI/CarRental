@@ -7,6 +7,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-		
+	<div>
+		<ul class="menu">
+			<li><a href="#">Menu</a> 
+				<ul>
+					<li><a href="ManagerMain">Manager main page</a></li>	
+				</ul>
+			</li>
+		</ul>	
+	</div>
 </body>
 </html>
