@@ -10,19 +10,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title><tiles:getAsString name="title"></tiles:getAsString></title>
 </head>
-<body>
-	<!-- Завдяки tiles:insertAttribute тегу в layout.jsp вставляються атрибути, описані на tiles.xml -->
-	<div>
-		<div>
+<body class="bodyMain">
+	
+	<div class="MainDiv">
+		<div class="header">
 			<tiles:insertAttribute name="header"></tiles:insertAttribute>
 		</div>
-		<div>
+		<div class="MainMenu">
 			<tiles:insertAttribute name="menu"></tiles:insertAttribute>
 		</div>
 		<div class="body">
 			<tiles:insertAttribute name="body"></tiles:insertAttribute>
 		</div>
-		<div>
+		<div class="footer">
 			<tiles:insertAttribute name="footer"></tiles:insertAttribute>
 		</div>
 	</div>

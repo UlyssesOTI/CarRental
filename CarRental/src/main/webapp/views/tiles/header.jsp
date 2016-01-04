@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 	<body>
-		<div class="header">
+		<div>
 			 
 		</div>
 	</body>

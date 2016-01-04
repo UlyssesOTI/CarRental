@@ -14,6 +14,7 @@
 					<li><a href="showAllCars">All cars</a></li>
 					<li><a href="showRentedCars">Rented cars</a></li>
 					<li><a href="showCarReports">Car reports</a></li>
+					<li><a href="createNewCar" ">Add new Car</a></li>
 				</ul>
 			</li>
 			<li><a href="#">Contracts</a>

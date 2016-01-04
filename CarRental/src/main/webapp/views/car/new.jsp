@@ -4,38 +4,38 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <body>
 	<form action="showAllCars" method="post" enctype="multipart/form-data" >
-		regNumber: <input type="text" name="regNumber">
-		regDate: <input type="text" name="regDate">
-		seats: <input type="text" name="seats">
-		model: 
-		<select name="modelid">
-			<c:forEach var="model" items="${model}">
-				<option value="${model.id}">${model.modelName}</option>
-			</c:forEach>
-		</select>
-		gearBox
-		<select name="gearBox">
-			<c:forEach var="gb" items="${gearBox}">
-				<option value="${gb.name()}">${gb.name()}</option>
-			</c:forEach>
-		</select>
-		color
-		<select name="color">
-			<c:forEach var="c" items="${color}">
-				<option value="${c.name()}">${c.name()}</option>
-			</c:forEach>
-		</select>
-   		
-   		
-   		
-					      Upload image:
+		
+		<ul>
+						<li>regNumber: <input type="text" name="regNumber"></li>
+						<li>regDate: <input type="text" name="regDate"></li>
+						<li>seats: <input type="text" name="seats"></li>
+						<li>model: 
+							<select name="modelid">
+								<c:forEach var="model" items="${model}">
+									<option value="${model.id}">${model.modelName}</option>
+								</c:forEach>
+							</select></li>
+						<li>gearBox
+							<select name="gearBox">
+								<c:forEach var="gb" items="${gearBox}">
+									<option value="${gb.name()}">${gb.name()}</option>
+								</c:forEach>
+							</select>
+						</li>
+						<li>color
+							<select name="color">
+								<c:forEach var="c" items="${color}">
+									<option value="${c.name()}">${c.name()}</option>
+								</c:forEach>
+							</select></li>
+						<li>Upload image:
 					      <input type="file" name="file" />
 					      
-				          <input type="submit" value="upload" />
-				          
-					   
-       	
-		dayPrice: <input type="text" name="dayPrice">
+				          <input type="submit" value="upload" /></li>
+						
+						<li>dayPrice: <input type="text" name="dayPrice"></li>
+						
+					</ul>
 		
 		<button type="submit">Save</button>
 	</form>
