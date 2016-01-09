@@ -7,4 +7,6 @@ import com.ulyssess.carrental.entity.Model;
 public interface ModelService {
 	
 	public List<Model> findAllModels();
+	
+	public Model findById(String modelId);
 }
