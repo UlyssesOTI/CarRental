@@ -1,10 +1,12 @@
 package com.ulyssess.carrental.controller;
 
+import java.beans.PropertyEditorSupport;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Base64;
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -12,6 +14,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -45,15 +48,22 @@ public class CarController {
 	
 	@Autowired
 	private ConversionService conversionService;
-	//Autowiring the ConversionService we declared in the context file above.
-	 
+//	//Autowiring the ConversionService we declared in the context file above.
+//	 
 	@InitBinder
 	public void registerConversionServices(WebDataBinder dataBinder) {
-		if(dataBinder.getConversionService() == null)
-			dataBinder.setConversionService(conversionService);
-    
 		
-		}
+		//dataBinder.setValidator(validator);
+		dataBinder.registerCustomEditor(com.ulyssess.carrental.entity.Model.class, "model", 
+				new PropertyEditorSupport() {
+		        	public void setAsText(String text) {
+		        		com.ulyssess.carrental.entity.Model model =  modelService.findById(text);
+		        		setValue(model);               
+		        }
+		    });
+		
+		//dataBinder.registerCustomEditor(Model.class	, new );
+    }
 
 //	@InitBinder
 //	private void initBinder(WebDataBinder binder) {
@@ -75,29 +85,35 @@ public class CarController {
 	
 	@RequestMapping(value = "/createNewCar")
 	public String createCarPage(Model model) {
-		model.addAttribute("color", Color.values());
-		model.addAttribute("gearBox", GearBox.values());
-		model.addAttribute("model", modelService.findAllModels());
+		Car car = new Car();
+		model.addAttribute("car", car);
+		model.addAttribute("colors", Color.values());
+		model.addAttribute("gearBoxs", GearBox.values());
+		model.addAttribute("models", modelService.findAllModels());
 		return "car-new";
 	}
 	 
 	//@RequestParam отримує вхідне (введене) значення з веб сторінки, використовуючи ім'я input тегу.
 	
-	@RequestMapping(value = "/showAllCars", method = RequestMethod.POST)
+	@RequestMapping(value = "/newCar", method = RequestMethod.POST)
 	public String createCars(
-			@ModelAttribute("movie") @Valid Car car, 
+			 @ModelAttribute("car")  @Valid Car car, 
 			BindingResult result,
-			Model model								
+			Model model,
+			@Validated FileClass file
 							 ) throws IOException {
-		
+
+		com.ulyssess.carrental.entity.Model modelc = modelService.findById("3");
 		String returnVal = "redirect:/showAllCars";
 		if (result.hasErrors()) {
-			System.out.println(car.getModel().getId());
-			//returnVal = "file";
+			
 		} else {			
-			//MultipartFile multipartFile = file.getFile();
-			//byte[] bFile = multipartFile.getBytes();
-			//carService.add(regNumber, regDate, seats, gearBox, color, dayPrice, modelid, bFile);		    
+			MultipartFile multipartFile = file.getFile();
+			byte[] bFile = multipartFile.getBytes();
+			//carService.add(regNumber, regDate, seats, gearBox, color, dayPrice, modelid, bFile);
+			car.setRegDate(new Date());
+			car.setImage(bFile);
+			carService.update(car);
 		}
 		return returnVal;
 	}

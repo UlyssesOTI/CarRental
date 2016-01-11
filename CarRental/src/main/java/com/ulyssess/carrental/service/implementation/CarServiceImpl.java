@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+
+
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,41 +29,40 @@ public class CarServiceImpl implements CarService{
 	private CarDAO carDAO;
 	@Autowired
 	private ModelDAO modeldao;
-
+	
 	@Transactional
-	public void add(String regNumber, String regDate, String seats, String gearBox, String color, String dayPrice,String modelId, byte[] image) {
-		
-		if(regNumber != null && seats != null && gearBox != null && color != null && dayPrice != null){
-			Car car = new Car(
-					regNumber, 
-					new Date(), 
-					Integer.parseInt(seats), 
-					GearBox.valueOf(gearBox),
-					Color.valueOf(color),
-					Double.parseDouble(dayPrice),image);
-			car.setModel(modeldao.findByKey(Model.class,Integer.parseInt(modelId)));
+	public void add(Car car) {
+		if(car != null){
 			carDAO.add(car);
-		} else {
-			System.out.println("some of parameters are empty"); 
 		}
+		
 	}
 
+//	@Transactional
+//	public void add(String regNumber, String regDate, String seats, String gearBox, String color, String dayPrice,String modelId, byte[] image) {
+//		
+//		if(regNumber != null && seats != null && gearBox != null && color != null && dayPrice != null){
+//			Car car = new Car(
+//					regNumber, 
+//					new Date(), 
+//					Integer.parseInt(seats), 
+//					GearBox.valueOf(gearBox),
+//					Color.valueOf(color),
+//					Double.parseDouble(dayPrice),image);
+//			car.setModel(modeldao.findByKey(Model.class,Integer.parseInt(modelId)));
+//			carDAO.add(car);
+//		} else {
+//			System.out.println("some of parameters are empty"); 
+//		}
+//	}
+	
+	
+
 	@Transactional
-	public void update(String regNumber, String regDate, String seats, String gearBox, String color, String dayPrice) {
-		if(regNumber != null){
-			Car carToUpdate = carDAO.findByRegNumber(regNumber);
-			if(carToUpdate != null){
-//				carToUpdate.set
-//				carDAO()
-			}else{
-				System.out.println("thre is no such car");
-			}
-		}
-		else{
-			System.out.println("regnumber is empty");
-		}
-		
-		
+	public void update(Car car) {
+		if(car != null){
+			carDAO.update(car);
+		}	
 	}
 
 	@Transactional

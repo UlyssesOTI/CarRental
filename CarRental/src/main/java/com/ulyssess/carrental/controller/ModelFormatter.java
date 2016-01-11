@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.format.Formatter;
 import org.springframework.stereotype.Component;
 

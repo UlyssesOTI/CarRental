@@ -3,40 +3,32 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <body>
-	<form action="showAllCars" method="post" enctype="multipart/form-data" >
-		
+	<form:form action="newCar" method="post" modelAttribute="car" enctype="multipart/form-data" >
 		<ul>
-						<li>regNumber: <input type="text" name="regNumber"></li>
-						<li>regDate: <input type="text" name="regDate"></li>
-						<li>seats: <input type="text" name="seats"></li>
-						<li>model: 
-							<select name="modelid">
-								<c:forEach var="model" items="${model}">
-									<option value="${model.id}">${model.modelName}</option>
-								</c:forEach>
-							</select></li>
-						<li>gearBox
-							<select name="gearBox">
-								<c:forEach var="gb" items="${gearBox}">
-									<option value="${gb.name()}">${gb.name()}</option>
-								</c:forEach>
-							</select>
-						</li>
-						<li>color
-							<select name="color">
-								<c:forEach var="c" items="${color}">
-									<option value="${c.name()}">${c.name()}</option>
-								</c:forEach>
-							</select></li>
-						<li>Upload image:
-					      <input type="file" name="file" />
-					      
-				          <input type="submit" value="upload" /></li>
-						
-						<li>dayPrice: <input type="text" name="dayPrice"></li>
-						
-					</ul>
-		
-		<button type="submit">Save</button>
-	</form>
+			<li>regNumber: <form:input path="regNumber" /></li>
+			<li>seats: <form:input path="seats" /></li>
+			<li>model: <form:select path="model">
+					<form:options items="${models}" itemValue="id" itemLabel="modelName" />
+				</form:select>
+			</li>
+			<li>gearBox: <form:select path="gearBox">
+					<c:forEach var="gearBox" items="${gearBoxs}">
+						<option id="" value="${gearBox}">${gearBox}</option>
+					</c:forEach>
+				</form:select>
+			</li>
+			<li>color: <form:select path="color">
+					<c:forEach var="color" items="${colors}">
+						<option value="${color}">${color}</option>
+					</c:forEach>
+				</form:select>
+			</li>
+			<li>dayPrice:<form:input path="dayPrice" /></li>
+			<li>Upload image:
+			     <input type="file" name="file" />   
+			        <input type="submit" value="upload" />
+		    </li>
+		</ul>
+		<button type="submit" name="operation" value="new">Save</button>
+	</form:form>
 </body>

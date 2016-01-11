@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.Valid;
 
 import com.ulyssess.carrental.enums.Color;
 import com.ulyssess.carrental.enums.GearBox;
@@ -28,7 +29,7 @@ public class Car {
 	private Color color;
 	private double dayPrice;
 	private byte[] image;
-	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = {CascadeType.MERGE}, fetch = FetchType.LAZY)
 	private Model model;
 	@OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY, mappedBy = "car")
 	private List<Contract> contracts;
