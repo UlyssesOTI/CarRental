@@ -37,6 +37,14 @@
 		
 	<tx:annotation-driven transaction-manager="transactionManager"></tx:annotation-driven> 
 	
-	
+	<mvc:annotation-driven/>
+ 
+	<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+      <property name="formatters">
+           <set>
+                 <ref bean="modelFormatter"/>
+           </set>
+      </property>
+</bean>
 						
 </beans>

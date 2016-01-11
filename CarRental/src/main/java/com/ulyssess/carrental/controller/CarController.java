@@ -48,12 +48,14 @@ public class CarController {
 	
 	@Autowired
 	private ConversionService conversionService;
-//	//Autowiring the ConversionService we declared in the context file above.
-//	 
+
+	
 	@InitBinder
 	public void registerConversionServices(WebDataBinder dataBinder) {
+	
+		//dataBinder.setConversionService(conversionService);
+	
 		
-		//dataBinder.setValidator(validator);
 		dataBinder.registerCustomEditor(com.ulyssess.carrental.entity.Model.class, "model", 
 				new PropertyEditorSupport() {
 		        	public void setAsText(String text) {
@@ -62,7 +64,7 @@ public class CarController {
 		        }
 		    });
 		
-		//dataBinder.registerCustomEditor(Model.class	, new );
+		
     }
 
 //	@InitBinder
@@ -103,14 +105,12 @@ public class CarController {
 			@Validated FileClass file
 							 ) throws IOException {
 
-		com.ulyssess.carrental.entity.Model modelc = modelService.findById("3");
 		String returnVal = "redirect:/showAllCars";
 		if (result.hasErrors()) {
 			
 		} else {			
 			MultipartFile multipartFile = file.getFile();
 			byte[] bFile = multipartFile.getBytes();
-			//carService.add(regNumber, regDate, seats, gearBox, color, dayPrice, modelid, bFile);
 			car.setRegDate(new Date());
 			car.setImage(bFile);
 			carService.update(car);
