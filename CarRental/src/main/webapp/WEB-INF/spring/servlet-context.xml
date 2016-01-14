@@ -11,8 +11,12 @@
 						
 	<import resource="classpath:/META-INF/appContext.xml"/>		
 	
+	<bean id="carValidator"
+		class="com.ulyssess.carrental.controller.CarValidator" />
+		
 	<bean id="fileValidator"
- 		class="com.ulyssess.carrental.file.FileValidator" />
+		class="com.ulyssess.carrental.dao.validator.FileValidator" />
+	
 	
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />

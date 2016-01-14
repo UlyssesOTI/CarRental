@@ -6,6 +6,7 @@
 	<form:form action="newCar" method="post" modelAttribute="car" enctype="multipart/form-data" >
 		<ul>
 			<li>regNumber: <form:input path="regNumber" /></li>
+			<form:errors  path="regNumber" cssStyle="color: #ff0000;" />
 			<li>seats: <form:input path="seats" /></li>
 			<li>model: <form:select path="model">
 					<form:options items="${models}" itemValue="id" itemLabel="modelName" />
@@ -30,5 +31,7 @@
 		    </li>
 		</ul>
 		<button type="submit" name="operation" value="new">Save</button>
+		
+		
 	</form:form>
 </body>

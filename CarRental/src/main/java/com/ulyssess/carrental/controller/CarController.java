@@ -26,12 +26,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.ulyssess.carrental.dao.validator.FileClass;
+import com.ulyssess.carrental.dao.validator.FileValidator;
 import com.ulyssess.carrental.dto.CarAllPageDTO;
 import com.ulyssess.carrental.entity.Car;
 import com.ulyssess.carrental.enums.Color;
 import com.ulyssess.carrental.enums.GearBox;
-import com.ulyssess.carrental.file.FileClass;
-import com.ulyssess.carrental.file.FileValidator;
+
 import com.ulyssess.carrental.service.CarService;
 import com.ulyssess.carrental.service.ModelService;
 
@@ -44,33 +45,21 @@ public class CarController {
 	private ModelService modelService;
 	
 	@Autowired
-	FileValidator validator;
-	
+	FileValidator fileValidator;
 	@Autowired
-	private ConversionService conversionService;
-
+	CarValidator carValidator;
 	
-	@InitBinder
-	public void registerConversionServices(WebDataBinder dataBinder) {
+	@InitBinder("car")
+	private void initBinderCar(WebDataBinder binder) {
+		//binder.setValidator(fileValidator);
+		binder.setValidator(carValidator);
+	}
 	
-		//dataBinder.setConversionService(conversionService);
-	
-		
-		dataBinder.registerCustomEditor(com.ulyssess.carrental.entity.Model.class, "model", 
-				new PropertyEditorSupport() {
-		        	public void setAsText(String text) {
-		        		com.ulyssess.carrental.entity.Model model =  modelService.findById(text);
-		        		setValue(model);               
-		        }
-		    });
-		
-		
-    }
-
-//	@InitBinder
-//	private void initBinder(WebDataBinder binder) {
-//		binder.setValidator(validator);
-//	}
+	@InitBinder("file")
+	private void initBinder(WebDataBinder binder) {
+		//binder.setValidator(fileValidator);
+		binder.setValidator(fileValidator);
+	}
 
 	@RequestMapping(value = "/file", method = RequestMethod.GET)
 	public String getForm(Model model) {
@@ -103,17 +92,17 @@ public class CarController {
 			BindingResult result,
 			Model model,
 			@Validated FileClass file
-							 ) throws IOException {
+							 ) throws IOException  {
 
+		MultipartFile multipartFile = file.getFile();
 		String returnVal = "redirect:/showAllCars";
-		if (result.hasErrors()) {
-			
+		if (result.hasErrors() || multipartFile.isEmpty()) {
+			returnVal = "redirect:/createNewCar";
 		} else {			
-			MultipartFile multipartFile = file.getFile();
 			byte[] bFile = multipartFile.getBytes();
 			car.setRegDate(new Date());
 			car.setImage(bFile);
-			carService.update(car);
+			carService.add(car);
 		}
 		return returnVal;
 	}
