@@ -12,9 +12,11 @@
 			<li><a href="#">Cars</a> 
 				<ul>
 					<li><a href="showAllCars">All cars</a></li>
-					<li><a href="showRentedCars">Rented cars</a></li>
-					<li><a href="showCarReports">Car reports</a></li>
-					<li><a href="createNewCar" ">Add new Car</a></li>
+					<li><a href="createNewCar">Add new Car</a></li>
+					<li><a href="allModels">All models</a></li>
+					<li><a href="newModel">Add new model</a></li>
+					<li><a href="allMarks">All marks</a></li>
+					<li><a href="newMark">Add new mark</a></li>
 				</ul>
 			</li>
 			<li><a href="#">Contracts</a>

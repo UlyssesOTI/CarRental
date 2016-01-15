@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -11,10 +12,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.validation.Valid;
+
 
 import com.ulyssess.carrental.enums.Color;
-import com.ulyssess.carrental.enums.GearBox;
+
 
 @Entity
 public class Car {
@@ -24,11 +25,9 @@ public class Car {
 	private int id;
 	private String regNumber;
 	private Date regDate;
-	private int seats;
-	private GearBox gearBox;
+	
+	
 	private Color color;
-	private double dayPrice;
-	private byte[] image;
 	@ManyToOne(cascade = {CascadeType.MERGE}, fetch = FetchType.LAZY)
 	private Model model;
 	@OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY, mappedBy = "car")
@@ -38,40 +37,12 @@ public class Car {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Car(String regNumber, Date regDate, int seats, GearBox gearBox, Color color, double dayPrice, byte[] image) {
+	public Car(String regNumber, Date regDate, Color color) {
 		super();
 		this.regNumber = regNumber;
 		this.regDate = regDate;
-		this.seats = seats;
-		this.gearBox = gearBox;
 		this.color = color;
-		this.dayPrice = dayPrice;
-		this.image = image;
 	}
-
-	public int getSeats() {
-		return seats;
-	}
-
-
-
-	public void setSeats(int seats) {
-		this.seats = seats;
-	}
-
-
-
-	public GearBox getGearBox() {
-		return gearBox;
-	}
-
-
-
-	public void setGearBox(GearBox gearBox) {
-		this.gearBox = gearBox;
-	}
-
-
 
 	public int getId() {
 		return id;
@@ -105,13 +76,7 @@ public class Car {
 		this.color = color;
 	}
 
-	public double getDayPrice() {
-		return dayPrice;
-	}
-
-	public void setDayPrice(double dayPrice) {
-		this.dayPrice = dayPrice;
-	}
+	
 
 	public Model getModel() {
 		return model;
@@ -133,21 +98,12 @@ public class Car {
 
 	@Override
 	public String toString() {
-		return "Car [regNumber=" + regNumber + ", regDate=" + regDate + ", seats=" + seats + ", gearBox=" + gearBox
-				+ ", color=" + color + ", dayPrice=" + dayPrice + "]";
+		return "Car [regNumber=" + regNumber + ", regDate=" + regDate + ", color=" + color + "]";
 	}
 
 
 
-	public byte[] getImage() {
-		return image;
-	}
-
-
-
-	public void setImage(byte[] image) {
-		this.image = image;
-	}
+	
 
 	
 	

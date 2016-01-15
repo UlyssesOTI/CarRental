@@ -22,6 +22,19 @@
 		<put-attribute name="title" value="Car {1}"></put-attribute>
 	</definition>
 	
+	
+	<definition name="mark-*" extends="base.definition">
+		<put-attribute name="menu" value="/views/manager/mainMenu.jsp"></put-attribute>
+		<put-attribute name="body" value="/views/mark/{1}.jsp"></put-attribute>
+		<put-attribute name="title" value="Mark {1}"></put-attribute>
+	</definition>
+	
+	<definition name="model-*" extends="base.definition">
+		<put-attribute name="menu" value="/views/manager/mainMenu.jsp"></put-attribute>
+		<put-attribute name="body" value="/views/model/{1}.jsp"></put-attribute>
+		<put-attribute name="title" value="Model {1}"></put-attribute>
+	</definition>
+	
 	<definition name="manager-*" extends="base.definition">
 		<put-attribute name="menu" value="/views/manager/mainMenu.jsp"></put-attribute>
 		<put-attribute name="body" value="/views/manager/{1}.jsp"></put-attribute>

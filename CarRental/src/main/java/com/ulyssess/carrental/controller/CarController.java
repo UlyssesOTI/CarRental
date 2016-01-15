@@ -1,38 +1,21 @@
 package com.ulyssess.carrental.controller;
 
-import java.beans.PropertyEditorSupport;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.Base64;
 import java.util.Date;
-import java.util.List;
-
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-
 import com.ulyssess.carrental.dao.validator.FileClass;
 import com.ulyssess.carrental.dao.validator.FileValidator;
-import com.ulyssess.carrental.dto.CarAllPageDTO;
 import com.ulyssess.carrental.entity.Car;
 import com.ulyssess.carrental.enums.Color;
 import com.ulyssess.carrental.enums.GearBox;
-
 import com.ulyssess.carrental.service.CarService;
 import com.ulyssess.carrental.service.ModelService;
 
@@ -41,23 +24,23 @@ public class CarController {
 	
 	@Autowired
 	private CarService carService;
+	
 	@Autowired
 	private ModelService modelService;
 	
 	@Autowired
 	FileValidator fileValidator;
+	
 	@Autowired
 	CarValidator carValidator;
 	
 	@InitBinder("car")
 	private void initBinderCar(WebDataBinder binder) {
-		//binder.setValidator(fileValidator);
 		binder.setValidator(carValidator);
 	}
 	
 	@InitBinder("file")
 	private void initBinder(WebDataBinder binder) {
-		//binder.setValidator(fileValidator);
 		binder.setValidator(fileValidator);
 	}
 
@@ -70,7 +53,7 @@ public class CarController {
 	
 	@RequestMapping(value = "/showAllCars")
 	public String getAllCars(Model model){
-		model.addAttribute("cars", carService.findAll());
+		model.addAttribute("cars", carService.findAllDTO());
 		return "car-all";
 	}
 	
@@ -80,57 +63,44 @@ public class CarController {
 		model.addAttribute("car", car);
 		model.addAttribute("colors", Color.values());
 		model.addAttribute("gearBoxs", GearBox.values());
-		model.addAttribute("models", modelService.findAllModels());
+		model.addAttribute("models", modelService.findAll());
 		return "car-new";
 	}
 	 
-	//@RequestParam отримує вхідне (введене) значення з веб сторінки, використовуючи ім'я input тегу.
-	
 	@RequestMapping(value = "/newCar", method = RequestMethod.POST)
 	public String createCars(
-			 @ModelAttribute("car")  @Valid Car car, 
-			BindingResult result,
-			Model model,
-			@Validated FileClass file
-							 ) throws IOException  {
-
-		MultipartFile multipartFile = file.getFile();
+			 		@ModelAttribute("car")  @Valid Car car, 
+			 		BindingResult result,
+			 		Model model){
+		
 		String returnVal = "redirect:/showAllCars";
-		if (result.hasErrors() || multipartFile.isEmpty()) {
+		if (result.hasErrors()) {
 			returnVal = "redirect:/createNewCar";
 		} else {			
-			byte[] bFile = multipartFile.getBytes();
 			car.setRegDate(new Date());
-			car.setImage(bFile);
 			carService.add(car);
 		}
 		return returnVal;
 	}
 	
-	
-	
-//		@RequestMapping(value = "/showAllCars", method = RequestMethod.POST)
-//		public String createCars(Model model,
-//				@Validated FileClass file,
-//				BindingResult result, @RequestParam(value = "regNumber")	String regNumber,
-//								 @RequestParam(value = "regDate") String regDate,
-//								 @RequestParam(value = "seats") String seats,
-//								 @RequestParam(value = "modelid") String modelid,
-//								 @RequestParam(value = "gearBox") String gearBox,
-//								 @RequestParam(value = "dayPrice") String dayPrice,
-//								 @RequestParam(value = "color") String color
-//																
-//								 ) throws IOException {
-//			
-//			String returnVal = "redirect:/showAllCars";
-//			if (result.hasErrors()) {
-//				returnVal = "file";
-//			} else {			
-//				MultipartFile multipartFile = file.getFile();
-//				byte[] bFile = multipartFile.getBytes();
-//				carService.add(regNumber, regDate, seats, gearBox, color, dayPrice, modelid, bFile);		    
-//			}
-//			return returnVal;
+//	@RequestMapping(value = "/newCar", method = RequestMethod.POST)
+//	public String createCars(
+//			 @ModelAttribute("car")  @Valid Car car, 
+//			BindingResult result,
+//			Model model,
+//			@Validated FileClass file
+//							 ) throws IOException  {
+//
+//		MultipartFile multipartFile = file.getFile();
+//		String returnVal = "redirect:/showAllCars";
+//		if (result.hasErrors() || multipartFile.isEmpty()) {
+//			returnVal = "redirect:/createNewCar";
+//		} else {			
+//			byte[] bFile = multipartFile.getBytes();
+//			car.setRegDate(new Date());
+//			carService.add(car);
 //		}
-
+//		return returnVal;
+//	}
+	
 }

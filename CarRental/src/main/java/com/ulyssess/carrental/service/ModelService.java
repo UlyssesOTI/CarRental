@@ -2,11 +2,19 @@ package com.ulyssess.carrental.service;
 
 import java.util.List;
 
+import com.ulyssess.carrental.dto.ModelAllPageDTO;
 import com.ulyssess.carrental.entity.Model;
 
 public interface ModelService {
 	
-	public List<Model> findAllModels();
+	public void add(Model model);
 	
-	public Model findById(String modelId);
+	public void update(Model model);
+	
+	public Model findById(String Id);
+	
+	public List<Model> findAll();
+	
+	public List<ModelAllPageDTO> findAllDTO();
+
 }
