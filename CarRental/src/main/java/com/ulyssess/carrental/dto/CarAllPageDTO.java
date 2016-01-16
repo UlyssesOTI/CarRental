@@ -5,6 +5,7 @@ package com.ulyssess.carrental.dto;
 public class CarAllPageDTO {
 	
 	private int id;
+	private String markName;
 	private String regNumber;
 	private String regDate;
 	private int seats;
@@ -18,11 +19,11 @@ public class CarAllPageDTO {
 		
 	}
 	
-	
-	public CarAllPageDTO(int id, String regNumber, String regDate, int seats, Double dayPrice, String gearBox,
-			String color, String modelName, String base64Encoded) {
+	public CarAllPageDTO(int id, String markName, String regNumber, String regDate, int seats, Double dayPrice,
+			String gearBox, String color, String modelName, String image) {
 		super();
 		this.id = id;
+		this.markName = markName;
 		this.regNumber = regNumber;
 		this.regDate = regDate;
 		this.seats = seats;
@@ -30,7 +31,7 @@ public class CarAllPageDTO {
 		this.gearBox = gearBox;
 		this.color = color;
 		this.modelName = modelName;
-		this.image = base64Encoded;
+		this.image = image;
 	}
 
 
@@ -97,6 +98,16 @@ public class CarAllPageDTO {
 
 	public void setImage(String image) {
 		this.image = image;
+	}
+
+
+	public String getMarkName() {
+		return markName;
+	}
+
+
+	public void setMarkName(String markName) {
+		this.markName = markName;
 	}
 	
 }

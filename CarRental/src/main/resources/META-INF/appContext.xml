@@ -44,6 +44,7 @@
     	<property name="formatters">
         	<set>
             	<ref bean="modelFormatter"/>
+            	<ref bean="markFormatter"/>
            	</set>
     	</property>
     	

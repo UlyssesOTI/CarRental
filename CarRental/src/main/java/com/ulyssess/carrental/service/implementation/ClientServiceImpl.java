@@ -2,19 +2,28 @@ package com.ulyssess.carrental.service.implementation;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.ulyssess.carrental.dao.ClientDAO;
 import com.ulyssess.carrental.entity.Client;
 import com.ulyssess.carrental.service.ClientService;
 
+@Service
 public class ClientServiceImpl implements ClientService{
+	
+	@Autowired
+	private ClientDAO clientDAO;
 
-	public void addClient(String lastName, String firstName, String email, String password) {
-		// TODO Auto-generated method stub
-		
+	@Transactional
+	public void add(Client client) {
+		clientDAO.add(client);
 	}
 
+	@Transactional
 	public List<Client> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return clientDAO.findAll(Client.class);
 	}
 
 }

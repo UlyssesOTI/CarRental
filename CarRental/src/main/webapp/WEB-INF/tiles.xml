@@ -16,6 +16,24 @@
 		<put-attribute name="menu" value=""></put-attribute>	
 	</definition>
 	
+	<definition name="home" extends="base.definition">
+		<put-attribute name="menu" value="/views/homeMenu.jsp"></put-attribute>
+		<put-attribute name="body" value="/views/home.jsp"></put-attribute>
+		<put-attribute name="title" value="Home"></put-attribute>
+	</definition>
+	
+	<definition name="manager-*" extends="base.definition">
+		<put-attribute name="menu" value="/views/manager/mainMenu.jsp"></put-attribute>
+		<put-attribute name="body" value="/views/manager/{1}.jsp"></put-attribute>
+		<put-attribute name="title" value="Manager {1}"></put-attribute>
+	</definition>
+	
+	<definition name="client-*" extends="base.definition">
+		<put-attribute name="menu" value="/views/client/mainMenu.jsp"></put-attribute>
+		<put-attribute name="body" value="/views/client/{1}.jsp"></put-attribute>
+		<put-attribute name="title" value="Client {1}"></put-attribute>
+	</definition>
+	
 	<definition name="car-*" extends="base.definition">
 		<put-attribute name="menu" value="/views/manager/mainMenu.jsp"></put-attribute>
 		<put-attribute name="body" value="/views/car/{1}.jsp"></put-attribute>
@@ -35,16 +53,11 @@
 		<put-attribute name="title" value="Model {1}"></put-attribute>
 	</definition>
 	
-	<definition name="manager-*" extends="base.definition">
-		<put-attribute name="menu" value="/views/manager/mainMenu.jsp"></put-attribute>
-		<put-attribute name="body" value="/views/manager/{1}.jsp"></put-attribute>
-		<put-attribute name="title" value="Manager {1}"></put-attribute>
+	<definition name="loginpage" extends="base.definition">
+		<put-attribute name="body" value="/views/loginpage.jsp"></put-attribute>
+		<put-attribute name="title" value="Login Page"></put-attribute>
 	</definition>
 	
-	<definition name="home" extends="base.definition">
-		<put-attribute name="menu" value="/views/homeMenu.jsp"></put-attribute>
-		<put-attribute name="body" value="/views/home.jsp"></put-attribute>
-		<put-attribute name="title" value="Home"></put-attribute>
-	</definition>
+	
 
 </tiles-definitions>

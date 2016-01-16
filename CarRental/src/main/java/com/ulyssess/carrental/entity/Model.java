@@ -30,7 +30,7 @@ public class Model {
 	@Column(length=100000)
 	private byte[] image;
 	private ModelClass modelClass;
-	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = {CascadeType.MERGE}, fetch = FetchType.LAZY)
 	private Mark mark;
 	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY, mappedBy = "model")
 	private List<Car> cars;

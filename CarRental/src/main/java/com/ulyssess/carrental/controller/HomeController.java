@@ -11,5 +11,9 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(value = "/loginpage")
+	public String loginPage(){
+		return "loginpage";
+	}
 
 }

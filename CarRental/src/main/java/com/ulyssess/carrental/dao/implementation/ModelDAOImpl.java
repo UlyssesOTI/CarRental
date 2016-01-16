@@ -4,9 +4,9 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ulyssess.carrental.dao.ModelDAO;
 import com.ulyssess.carrental.entity.Mark;
@@ -19,6 +19,7 @@ public class ModelDAOImpl extends EntityDAOAbstract<Model, Integer> implements M
 	@PersistenceContext(unitName = "Primary")
 	private EntityManager entityManager;
 	
+	@Transactional
 	public List<Model> findByModelClass(ModelClass modelClass) {
 		List<Model> resList = null;
 		resList = entityManager.

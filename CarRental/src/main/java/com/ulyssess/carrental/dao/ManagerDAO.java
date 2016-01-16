@@ -1,6 +1,5 @@
 package com.ulyssess.carrental.dao;
 
-import java.util.Date;
 import java.util.List;
 
 import com.ulyssess.carrental.entity.Manager;

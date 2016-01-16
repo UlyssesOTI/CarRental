@@ -4,7 +4,8 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
+
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ulyssess.carrental.dao.ManagerDAO;
 import com.ulyssess.carrental.entity.Manager;

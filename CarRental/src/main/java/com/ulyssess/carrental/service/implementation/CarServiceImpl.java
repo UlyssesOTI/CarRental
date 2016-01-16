@@ -50,6 +50,7 @@ public class CarServiceImpl implements CarService{
 			CarToPage.add(
 					new CarAllPageDTO(
 							car.getId(),
+							car.getModel().getMark().getMarkName(),
 							car.getRegNumber(),
 							car.getRegDate().toString(),
 							car.getModel().getSeats(),

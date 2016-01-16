@@ -6,7 +6,6 @@ import java.util.List;
 import com.ulyssess.carrental.entity.Car;
 import com.ulyssess.carrental.entity.Client;
 import com.ulyssess.carrental.entity.Contract;
-import com.ulyssess.carrental.entity.Manager;
 
 public interface ContractDAO extends EntityDAO<Contract, Integer>{
 	

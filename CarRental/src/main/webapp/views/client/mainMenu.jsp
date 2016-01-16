@@ -11,18 +11,14 @@
 		<ul class="menu">
 			<li><a href="#">Cars</a> 
 				<ul>
-					<li><a href="managerShowAllCars">All cars</a></li>
-					<li><a href="managerCreateNewCar">Add new Car</a></li>
-					<li><a href="managerAllModels">All models</a></li>
-					<li><a href="managerNewModel">Add new model</a></li>
-					<li><a href="managerAllMarks">All marks</a></li>
-					<li><a href="managerNewMark">Add new mark</a></li>
+					<li><a href="#">All models</a></li>
+					<li><a href="#">All marks</a></li>
 				</ul>
 			</li>
-			<li><a href="#">Contracts</a>
+			<li><a href="#">My contracts</a>
 				<ul>
-					<li><a href="#">All contracts</a></li>
-					<li><a href="#">Current contracts</a></li>
+					<li><a href="#">My contract history</a></li>
+					<li><a href="#">My Current contracts</a></li>
 					<li><a href="#">All reservations</a></li>
 					<li><a href="#">Current reservations</a></li>
 				</ul>

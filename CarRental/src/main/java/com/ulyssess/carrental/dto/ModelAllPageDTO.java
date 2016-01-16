@@ -7,15 +7,20 @@ public class ModelAllPageDTO {
 	private Double dayPrice;
 	private String gearBox;
 	private String modelName;
+	private String markName;
 	private String image;
 	
-	public ModelAllPageDTO(int id, int seats, Double dayPrice, String gearBox, String modelName, String image) {
+	
+
+	public ModelAllPageDTO(int id, int seats, Double dayPrice, String gearBox, String modelName, String markName,
+			String image) {
 		super();
 		this.id = id;
 		this.seats = seats;
 		this.dayPrice = dayPrice;
 		this.gearBox = gearBox;
 		this.modelName = modelName;
+		this.markName = markName;
 		this.image = image;
 	}
 
@@ -65,6 +70,14 @@ public class ModelAllPageDTO {
 
 	public void setImage(String image) {
 		this.image = image;
+	}
+
+	public String getMarkName() {
+		return markName;
+	}
+
+	public void setMarkName(String markName) {
+		this.markName = markName;
 	}
 	
 	

@@ -19,20 +19,20 @@ public class MarkController {
 	@Autowired
 	private MarkService markService;
 	
-	@RequestMapping(value="/allMarks")
+	@RequestMapping(value="/managerAllMarks")
 	private String allModels(Model model){
 		model.addAttribute("marks",markService.findAll());
 		return "mark-all";
 	}
 	
-	@RequestMapping(value="/newMark")
+	@RequestMapping(value="/managerNewMark")
 	private String newModel(Model model){	
 		Mark mark = new Mark();
 		model.addAttribute("mark",mark);
 		return "mark-new";
 	}
 	
-	@RequestMapping(value="/editMark")
+	@RequestMapping(value="/managerEditMark")
 	private String editModel(Model model,@RequestParam(value="id") String id){	
 		Mark mark = markService.findById(id);
 		model.addAttribute("mark",mark);
@@ -53,7 +53,7 @@ public class MarkController {
 //	}
 
 	
-	@RequestMapping(value="/saveMark")
+	@RequestMapping(value="/managerSaveMark")
 	private String saveMark(
 					@ModelAttribute(value="mark") @Valid Mark mark,
 					@RequestParam(value="operation") String operation,

@@ -18,10 +18,15 @@
 						<img  src="data:image/jpeg;base64,${model.image}" height="150" width="250"/>
 					</h4>
 					<ul>
+						<li><h3>${model.markName}</h3></li>
 						<li><h3>${model.modelName}</h3></li>
 						<li>Seats: ${model.seats}</li>
 						<li>Gear box: ${model.gearBox}</li>
-						<li>Day price: ${model.dayPrice}</li>							
+						<li>Day price: ${model.dayPrice}</li>	
+						<form:form action="managerEditModel" method="post">
+							<input type="hidden" name="id" value="${model.id}">
+							<button type="submit">Edit</button>
+						</form:form>						
 					</ul>
 					
 				</div>

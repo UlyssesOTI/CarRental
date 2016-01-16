@@ -23,7 +23,7 @@
 								<td><h4>${mark.id}</h4></td>
 								<td><h4>${mark.markName}</h4></td>
 								<td>
-									<form:form action="editMark" method="post">
+									<form:form action="managerEditMark" method="post">
 										<input type="hidden" name="id" value="${mark.id}">
 										<button type="submit">Edit</button>
 									</form:form>

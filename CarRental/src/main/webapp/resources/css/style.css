@@ -5,6 +5,13 @@
 	padding:0;
 }
 
+.log{
+	background-color: white;
+    width: 200px;
+    height: 50px;
+    text-align: center;
+}
+
 .bodyMain{
 	
 	background-position: 0 0, center 0;
@@ -28,10 +35,9 @@
 	background-color: #1b1d1f;
    	height: 150px;
     margin-bottom: 0;
-    text-align: center;
+    text-align: right;
     position: relative;
     z-index: 2;
-    font-size: 0;
     background: url(../images/top.png) no-repeat center top;
 }
 

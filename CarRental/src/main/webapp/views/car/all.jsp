@@ -18,6 +18,7 @@
 						<img  src="data:image/jpeg;base64,${car.image}" height="150" width="250"/>
 					</h4>
 					<ul>
+						<li><h3>${car.markName}</h3></li>
 						<li><h3>${car.modelName}</h3></li>
 						<li>Reg number: ${car.regNumber}</li>
 						<li>Reg date: ${car.regDate}</li>

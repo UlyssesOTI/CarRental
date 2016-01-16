@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 import com.ulyssess.carrental.dao.validator.FileClass;
 import com.ulyssess.carrental.dao.validator.FileValidator;
 import com.ulyssess.carrental.entity.Car;
 import com.ulyssess.carrental.enums.Color;
-import com.ulyssess.carrental.enums.GearBox;
 import com.ulyssess.carrental.service.CarService;
 import com.ulyssess.carrental.service.ModelService;
 
@@ -51,23 +51,22 @@ public class CarController {
 		return "file";
 	}
 	
-	@RequestMapping(value = "/showAllCars")
+	@RequestMapping(value = "/managerShowAllCars")
 	public String getAllCars(Model model){
 		model.addAttribute("cars", carService.findAllDTO());
 		return "car-all";
 	}
 	
-	@RequestMapping(value = "/createNewCar")
+	@RequestMapping(value = "/managerCreateNewCar")
 	public String createCarPage(Model model) {
 		Car car = new Car();
 		model.addAttribute("car", car);
 		model.addAttribute("colors", Color.values());
-		model.addAttribute("gearBoxs", GearBox.values());
 		model.addAttribute("models", modelService.findAll());
 		return "car-new";
 	}
 	 
-	@RequestMapping(value = "/newCar", method = RequestMethod.POST)
+	@RequestMapping(value = "/managerNewCar", method = RequestMethod.POST)
 	public String createCars(
 			 		@ModelAttribute("car")  @Valid Car car, 
 			 		BindingResult result,

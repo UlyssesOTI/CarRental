@@ -7,15 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div>
-		<ul class="menu">
-			<li><a href="#">Menu</a> 
-				<ul>
-					<li><a href="managerMain">Manager main page</a></li>	
-					<li><a href="allClientsMain">Client main page</a></li>
-				</ul>
-			</li>
-		</ul>	
-	</div>
+	<form action="loginprocessing" method="post">
+		Login <input type="text" name="username">
+		Password <input type="password" name="password">
+		<input type="submit" value="Login">
+	</form>
+	
+	<a href="signIn">Sign in</a>
 </body>
 </html>

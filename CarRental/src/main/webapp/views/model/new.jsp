@@ -3,13 +3,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <body>
-	<form:form action="saveModel" method="post" modelAttribute="model" enctype="multipart/form-data" >
+	<form:form action="managerSaveModel" method="post" modelAttribute="model" enctype="multipart/form-data" >
 		<ul>
-			<li>Seats: <form:input path="seats" /></li>
-			<li>Model: <form:select path="mark">
+			
+			<li>Name: <form:input path="modelName" /></li>
+			<li>Mark: <form:select path="mark">
 					<form:options items="${marks}" itemValue="id" itemLabel="markName" />
 				</form:select>
 			</li>
+			<li>Seats: <form:input path="seats" /></li>
 			<li>Gear box: <form:select path="gearBox">
 					<c:forEach var="gearBox" items="${gearBoxs}">
 						<option id="" value="${gearBox}">${gearBox}</option>
