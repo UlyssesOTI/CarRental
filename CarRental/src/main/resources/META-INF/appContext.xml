@@ -45,6 +45,8 @@
         	<set>
             	<ref bean="modelFormatter"/>
             	<ref bean="markFormatter"/>
+            	<ref bean="dateFormatter"/>
+            	<ref bean="doubleFormatter"/>
            	</set>
     	</property>
     	

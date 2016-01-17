@@ -1,5 +1,6 @@
 package com.ulyssess.carrental.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -55,7 +56,7 @@ public class ClientController {
 	 		BindingResult bindingResult,
 	 		Model model){
 		
-		String returnVal = "";
+		String returnVal = "redirect:/loginpage";
 		if(bindingResult.hasErrors()){
 			returnVal = "";
 		}else{
@@ -70,9 +71,5 @@ public class ClientController {
 		return returnVal;
 	}
 	
-	@RequestMapping(value="/clientReserveModel")
-	private String reserveModel(Model model, 
-				@RequestParam("id") String id){
-		return "client-registration";
-	}
+	
 }

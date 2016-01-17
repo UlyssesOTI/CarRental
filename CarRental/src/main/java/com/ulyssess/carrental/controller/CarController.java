@@ -72,34 +72,14 @@ public class CarController {
 			 		BindingResult result,
 			 		Model model){
 		
-		String returnVal = "redirect:/showAllCars";
+		String returnVal = "redirect:/managerShowAllCars";
 		if (result.hasErrors()) {
-			returnVal = "redirect:/createNewCar";
+			returnVal = "redirect:/managerCreateNewCar";
 		} else {			
 			car.setRegDate(new Date());
 			carService.add(car);
 		}
 		return returnVal;
 	}
-	
-//	@RequestMapping(value = "/newCar", method = RequestMethod.POST)
-//	public String createCars(
-//			 @ModelAttribute("car")  @Valid Car car, 
-//			BindingResult result,
-//			Model model,
-//			@Validated FileClass file
-//							 ) throws IOException  {
-//
-//		MultipartFile multipartFile = file.getFile();
-//		String returnVal = "redirect:/showAllCars";
-//		if (result.hasErrors() || multipartFile.isEmpty()) {
-//			returnVal = "redirect:/createNewCar";
-//		} else {			
-//			byte[] bFile = multipartFile.getBytes();
-//			car.setRegDate(new Date());
-//			carService.add(car);
-//		}
-//		return returnVal;
-//	}
-	
+		
 }

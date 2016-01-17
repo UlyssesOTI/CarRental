@@ -26,6 +26,8 @@ public class Client {
 	private int rating;
 	@OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY, mappedBy = "client")
 	private List<Contract> contracts;
+	@OneToMany(cascade = {CascadeType.MERGE}, fetch = FetchType.LAZY, mappedBy = "client")
+	private List<Reservation> reservations;
 	
 	public Client() {
 		// TODO Auto-generated constructor stub
@@ -100,6 +102,14 @@ public class Client {
 		return "Client [id=" + id + ", lastName=" + lastName + ", firstName=" + firstName + ", email=" + email
 				+ ", password=" + password + ", regDate=" + regDate + ", rating=" + rating + ", contracts=" + contracts
 				+ "]";
+	}
+
+	public List<Reservation> getReservations() {
+		return reservations;
+	}
+
+	public void setReservations(List<Reservation> reservations) {
+		this.reservations = reservations;
 	}
 	
 }

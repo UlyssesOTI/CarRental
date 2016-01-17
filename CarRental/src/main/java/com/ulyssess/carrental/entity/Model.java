@@ -34,6 +34,8 @@ public class Model {
 	private Mark mark;
 	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY, mappedBy = "model")
 	private List<Car> cars;
+	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY, mappedBy = "model")
+	private List<Reservation> reservations;
 	
 	
 	public Model() {
@@ -120,6 +122,14 @@ public class Model {
 
 	public void setImage(byte[] image) {
 		this.image = image;
+	}
+
+	public List<Reservation> getReservations() {
+		return reservations;
+	}
+
+	public void setReservations(List<Reservation> reservations) {
+		this.reservations = reservations;
 	}
 		
 }

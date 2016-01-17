@@ -9,6 +9,7 @@
 		<class>com.ulyssess.carrental.entity.Mark</class>
 		<class>com.ulyssess.carrental.entity.Model</class>
 		<class>com.ulyssess.carrental.entity.Report</class>
+		<class>com.ulyssess.carrental.entity.Reservation</class>
 		<properties>
 			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
 			<property name="hibernate.connection.url" value="jdbc:mysql://localhost/CarRental" />

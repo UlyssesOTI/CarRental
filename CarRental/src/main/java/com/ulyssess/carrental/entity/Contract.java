@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Contract {
@@ -30,6 +31,8 @@ public class Contract {
 	private Manager manager;
 	@OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY, mappedBy = "contract")
 	private List<Report> reports;
+	@OneToOne(mappedBy = "contract")
+	private Reservation reservation;
 	
 	public Contract() {
 		// TODO Auto-generated constructor stub
@@ -123,6 +126,18 @@ public class Contract {
 	public String toString() {
 		return "Contract [id=" + id + ", date=" + date + ", beginDate=" + beginDate + ", endDate=" + endDate
 				+ ", price=" + price + ", client=" + client + ", car=" + car + ", manager=" + manager + "]";
+	}
+
+
+
+	public Reservation getReservation() {
+		return reservation;
+	}
+
+
+
+	public void setReservation(Reservation reservation) {
+		this.reservation = reservation;
 	}
 	
 }

@@ -60,7 +60,7 @@ public class MarkController {
 					BindingResult bindingResult, 
 					Model model ){
 		
-		String returnVal = "redirect:/allMarks";
+		String returnVal = "redirect:/managerAllMarks";
 		if(bindingResult.hasErrors()){
 			returnVal = "redirect/newMark";
 		}else{
