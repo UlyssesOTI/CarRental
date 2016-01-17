@@ -49,7 +49,7 @@ public class ReservationController {
 	
 	@RequestMapping(value = "/clientSaveReservation", method = RequestMethod.POST)
 	private String saveReservation(
-			@ModelAttribute(value="reservation") Reservation reservation,
+			@ModelAttribute(value="reservation") @Valid Reservation reservation,
 			//Principal principal, 
 			BindingResult bindingResult,
 			Model model){
