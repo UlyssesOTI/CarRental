@@ -1,6 +1,7 @@
 package com.ulyssess.carrental.controller;
 
 import java.security.Principal;
+import java.util.Date;
 
 import javax.validation.Valid;
 
@@ -32,11 +33,17 @@ public class ReservationController {
 	
 	@RequestMapping(value="/clientReserveModel", method = RequestMethod.POST)
 	private String reserveModel(Model model, Principal principal, 
-				@RequestParam("id") String id){
+				@RequestParam("id") String id,
+				@RequestParam("begin") String  begin,
+				@RequestParam("end") String end){
 		Reservation reservation = new Reservation();
+//		reservation.setBeginDate(DateParse.parse(begin));
+//		reservation.setEndDate(DateParse.parse(end));
 		reservation.setModel(modelService.findById(id));
 		reservation.setClient(clientService.findById(principal.getName()));
 		model.addAttribute("reservation", reservation);
+		model.addAttribute("begin", begin);
+		model.addAttribute("end", end);
 		return "client-reserve";
 	}
 	
@@ -50,15 +57,27 @@ public class ReservationController {
 	@RequestMapping(value = "/clientSaveReservation", method = RequestMethod.POST)
 	private String saveReservation(
 			@ModelAttribute(value="reservation") @Valid Reservation reservation,
-			//Principal principal, 
+			@RequestParam("begin") String  begin,
+			@RequestParam("end") String end, 
 			BindingResult bindingResult,
 			Model model){
 		if(bindingResult.hasErrors()){
 			
 		}else{
+			reservation.setDate(new Date());
+			reservation.setBeginDate(DateParse.parse(begin));
+			reservation.setEndDate(DateParse.parse(end));
 			reservationService.add(reservation);
 		}
 		return "client-complete";
+	}
+	
+	@RequestMapping(value="/managerNewReservations")
+	private String managerNewReservations(Model model,
+					@RequestParam(value="begin") String begin,
+					@RequestParam(value="end") String end){
+		model.addAttribute("reservations", reservationService.findNewReservations(begin, end));
+		return "manager-allNewReservations";
 	}
 
 }

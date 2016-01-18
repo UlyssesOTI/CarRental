@@ -21,10 +21,10 @@
 			</li>
 			<li><a href="#">Contracts</a>
 				<ul>
-					<li><a href="#">All contracts</a></li>
-					<li><a href="#">Current contracts</a></li>
+					<li><a href="managerNewReservations">New reservations</a></li>
 					<li><a href="#">All reservations</a></li>
-					<li><a href="#">Current reservations</a></li>
+					<li><a href="#">New contracts</a></li>
+					<li><a href="#">All contracts</a></li>
 				</ul>
 			</li>
 			<li><a href="#">Costumers</a>

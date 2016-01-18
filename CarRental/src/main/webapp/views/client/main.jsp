@@ -15,10 +15,17 @@
   <link rel="stylesheet" href="/resources/demos/style.css">
   <script>
   $(function() {
-    $( "#datepicker1" ).datepicker();
+	  $("#datepicker1").datepicker({
+		    minDate: "0",			
+		    maxDate: "+1m +1w +3d"  
+		});
+    
   });
   $(function() {
-	    $( "#datepicker2" ).datepicker();
+	  $("#datepicker2").datepicker({
+		    minDate: "1",			
+		    maxDate: "+1m +1w +4d"  
+		});
 	  });
   </script>
 </head>
@@ -28,8 +35,8 @@
 <body>
 	<form action="allClientsAvailableModels" method="post">
 		<h2>Input Data</h2>
-			<p>Pick-Up Date: <input type="text" id="datepicker1" name="begin"></p>
-			<p>Drop-Off Date: <input type="text" id="datepicker2" name="end"></p>
+			<p>Pick-Up Date: <input type="text" id="datepicker1" name="begin" value="${begin}"></p>
+			<p>Drop-Off Date: <input type="text" id="datepicker2" name="end" value="${end}"></p>			
 		<button type="submit">Submit</button>
 	</form>
 	
@@ -50,6 +57,8 @@
 						<li>Gear box: ${model.gearBox}</li>
 						<li>Day price: ${model.dayPrice}</li>	
 						<form:form action="clientReserveModel" method="post">
+							<input type="hidden" name="begin" value="${begin}">
+							<input type="hidden" name="end" value="${end}">
 							<input type="hidden" name="id" value="${model.id}">
 							<button type="submit">Reserve</button>
 						</form:form>						

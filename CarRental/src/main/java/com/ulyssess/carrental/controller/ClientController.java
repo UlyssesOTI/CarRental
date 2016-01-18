@@ -1,6 +1,5 @@
 package com.ulyssess.carrental.controller;
 
-import java.security.Principal;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -38,8 +37,11 @@ public class ClientController {
 				Model model, 
 				@RequestParam("begin") String begin, 
 				@RequestParam("end") String end){
+		
 		List<ModelAllPageDTO> models = modelService.findAvailableModelsByPeriod(begin, end);
 		model.addAttribute("models", models);
+		model.addAttribute("begin", begin);
+		model.addAttribute("end", end);
 		return "client-main";
 	}
 	

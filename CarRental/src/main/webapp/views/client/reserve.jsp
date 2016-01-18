@@ -11,9 +11,8 @@
 <body>
 	<form:form action="clientSaveReservation" method="post" modelAttribute="reservation" >
 		<ul>
-			<li>date: <form:input path="date" /></li>
-			<li>beginDate: <form:input path="beginDate" /></li>
-			<li>endDate: <form:input path="endDate" /></li>
+			<li>beginDate: <input type="text" name="begin" value="${begin}"></li>
+			<li>endDate: <input type="text" name="end" value="${end}"></li>
 			<li>summ: <form:input path="summ" /></li>
 			<li>model: <form:input readonly="true" path="model.id" /></li>		
 			<li>client: <form:input readonly="true" path="client.id" /></li>
