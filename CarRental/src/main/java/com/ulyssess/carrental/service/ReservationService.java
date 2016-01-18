@@ -11,6 +11,8 @@ public interface ReservationService {
 	
 	public void update(Reservation reservation);
 	
+	public Reservation findById(String id);
+	
 	public List<ReservationAllDTO> findNewReservations(String begin, String end);
 
 }

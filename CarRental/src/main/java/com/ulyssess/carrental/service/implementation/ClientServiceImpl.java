@@ -32,6 +32,7 @@ public class ClientServiceImpl implements ClientService{
 		return clientDAO.findAll(Client.class);
 	}
 
+	@Transactional
 	public Client findById(String id) {
 		int clientId=0;
 		Client client = null;

@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ulyssess.carrental.controller.DateParse;
 import com.ulyssess.carrental.dao.ReservationDAO;
 import com.ulyssess.carrental.dto.ReservationAllDTO;
+import com.ulyssess.carrental.entity.Client;
 import com.ulyssess.carrental.entity.Reservation;
 import com.ulyssess.carrental.service.ReservationService;
 
@@ -51,6 +52,21 @@ public class ReservationServiceImpl implements ReservationService {
 		return resList;
 		
 		
+	}
+
+	@Transactional
+	public Reservation findById(String id) {
+		int reservationId=0;
+		Reservation reservation = null;
+		try {
+			reservationId = Integer.parseInt(id);
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		}
+		if(reservationId != 0){
+			reservation = reservationDAO.findByKey(Reservation.class, reservationId);
+		}
+		return reservation;
 	}
 
 }

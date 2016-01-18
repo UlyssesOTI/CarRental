@@ -24,7 +24,7 @@
 						<li>Sum: ${reservation.summ}</li>
 							
 						<form:form action="managerCreateContract" method="post">
-							<input type="hidden" name="resrvationId" value="${reservation.id}">
+							<input type="hidden" name="reservationId" value="${reservation.id}">
 							<input type="hidden" name="clientId" value="${reservation.clientId}">
 							<input type="hidden" name="modelId" value="${reservation.modelId}">
 							<button type="submit">Create contract</button>
