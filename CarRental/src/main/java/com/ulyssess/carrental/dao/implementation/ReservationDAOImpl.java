@@ -26,13 +26,13 @@ public class ReservationDAOImpl extends EntityDAOAbstract<Reservation, Integer> 
 		createQuery("SELECT "
 				+ "		r "
 				+ "	FROM Reservation r "
-					+ "		WHERE (r.date BETWEEN :begin AND :end) "
-					+ "			AND (c.contract = null) ",
+					+ "		WHERE (r.date BETWEEN :begin AND :end) ",
+					//+ "			AND (r.contract is null) ",
 					Reservation.class).
 		setParameter("begin", begin).
 		setParameter("end", end).
 		getResultList();
-		
+
 		return resList;
 	}
 

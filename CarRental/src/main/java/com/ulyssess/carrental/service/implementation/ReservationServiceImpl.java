@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ulyssess.carrental.controller.DateParse;
 import com.ulyssess.carrental.dao.ReservationDAO;
+import com.ulyssess.carrental.dto.ReservationAllDTO;
 import com.ulyssess.carrental.entity.Reservation;
 import com.ulyssess.carrental.service.ReservationService;
 
@@ -28,10 +29,28 @@ public class ReservationServiceImpl implements ReservationService {
 		reservationDAO.update(reservation);	
 	}
 
-	public List<Reservation> findNewReservations(String begin, String end) {
-		List<Reservation> resList = new ArrayList<Reservation>();
-		resList = reservationDAO.findNewReservations(DateParse.parse(begin), DateParse.parse(end));
+	@Transactional
+	public List<ReservationAllDTO> findNewReservations(String begin, String end) {
+		List<ReservationAllDTO> resList = new ArrayList<ReservationAllDTO>();
+		List<Reservation> list = new ArrayList<Reservation>();
+		list = reservationDAO.findNewReservations(DateParse.parse(begin), DateParse.parse(end));
+		for (Reservation reservation : list) {
+			resList.add(new ReservationAllDTO(	
+					reservation.getId(), 
+					reservation.getDate().toString(), 
+					reservation.getBeginDate().toString(), 
+					reservation.getEndDate().toString(), 
+					reservation.getSumm().toString(), 
+					reservation.getClient().getId(), 
+					reservation.getClient().getLastName(), 
+					reservation.getClient().getFirstName(), 
+					reservation.getModel().getId(), 
+					reservation.getModel().getModelName(), 
+					(reservation.getContract()==null)? 0 : reservation.getContract().getId()));
+		}
 		return resList;
+		
+		
 	}
 
 }

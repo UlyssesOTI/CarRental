@@ -2,6 +2,7 @@ package com.ulyssess.carrental.controller;
 
 import java.security.Principal;
 import java.util.Date;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.ulyssess.carrental.dto.ReservationAllDTO;
 import com.ulyssess.carrental.entity.Reservation;
 import com.ulyssess.carrental.service.ClientService;
 import com.ulyssess.carrental.service.ModelService;
@@ -74,9 +76,10 @@ public class ReservationController {
 	
 	@RequestMapping(value="/managerNewReservations")
 	private String managerNewReservations(Model model,
-					@RequestParam(value="begin") String begin,
-					@RequestParam(value="end") String end){
-		model.addAttribute("reservations", reservationService.findNewReservations(begin, end));
+					@RequestParam(value="begin", defaultValue="1/1/1900") String begin,
+					@RequestParam(value="end", defaultValue="1/1/9999") String end){
+		List<ReservationAllDTO> list = reservationService.findNewReservations(begin, end);
+		model.addAttribute("reservations", list);
 		return "manager-allNewReservations";
 	}
 
