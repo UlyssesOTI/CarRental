@@ -12,6 +12,7 @@
 <body>
 	<form:form action="managerSaveContract" method="post" modelAttribute="contract">
 		<ul>
+
 			<fmt:formatDate value="${contract.beginDate}" pattern="MM/dd/yyyy" var="fbeginDate"/>
 			<fmt:formatDate value="${contract.endDate}" pattern="MM/dd/yyyy" var="fendDate"/>
 			<li>beginDate:<form:input path="beginDate" value ="${fbeginDate}" readonly="true"/> </li>
