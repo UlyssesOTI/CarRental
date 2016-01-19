@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ulyssess.carrental.dao.ContractDAO;
 import com.ulyssess.carrental.entity.Client;
 import com.ulyssess.carrental.entity.Contract;
 import com.ulyssess.carrental.entity.Model;
@@ -24,6 +25,9 @@ public class ContractServiceImpl implements ContractService{
 	
 	@Autowired
 	private ModelService modelService;
+	
+	@Autowired
+	private ContractDAO contractDAO;
 
 	@Transactional
 	public Contract createNewContract(String reservID, String clientId) {
@@ -40,6 +44,15 @@ public class ContractServiceImpl implements ContractService{
 		
 		
 		return contract;
+	}
+
+	public void add(Contract contract) {
+		contractDAO.add(contract);
+	}
+
+	public void update(Contract contract) {
+		contractDAO.update(contract);
+		
 	}
 
 

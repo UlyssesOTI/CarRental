@@ -9,5 +9,7 @@ public interface CarDAO extends EntityDAO<Car, Integer>{
 	public List<Car> findRentedCars(Date begin, Date end);
 	
 	public Car findByRegNumber(String regNumber);
+	
+	public List<Car> findByModelId(int modelId);
 
 }

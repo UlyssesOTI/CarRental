@@ -53,4 +53,20 @@ public class CarDAOImpl extends EntityDAOAbstract<Car, Integer> implements CarDA
 		return resCar;
 	}
 
+	@Transactional
+	public List<Car> findByModelId(int modelId) {
+		List<Car> resList = null;
+		
+		resList = entityManager.
+				createQuery("SELECT "
+						+ "		c "
+						+ "	FROM Car c "
+							+ "		WHERE (c.model.id = :modelId)",
+							Car.class).
+				setParameter("modelId", modelId).
+				getResultList();
+				
+		return resList;
+	}
+
 }

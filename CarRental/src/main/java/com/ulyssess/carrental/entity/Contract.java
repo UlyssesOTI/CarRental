@@ -1,5 +1,6 @@
 package com.ulyssess.carrental.entity;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -13,14 +14,19 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class Contract {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+	@DateTimeFormat(pattern = "MM/dd/yyyy")
 	private Date date;
+	@DateTimeFormat(pattern = "MM/dd/yyyy")
 	private Date beginDate;
+	@DateTimeFormat(pattern = "MM/dd/yyyy")
 	private Date endDate;
 	private double price;
 	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY)

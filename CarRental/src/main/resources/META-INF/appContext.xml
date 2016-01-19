@@ -48,6 +48,7 @@
             	<ref bean="dateFormatter"/>
             	<ref bean="doubleFormatter"/>
             	<ref bean="clientFormatter"/>
+            	<ref bean="carFormatter"/>
            	</set>
     	</property>
     	
