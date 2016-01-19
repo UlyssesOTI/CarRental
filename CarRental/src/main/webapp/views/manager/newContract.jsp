@@ -12,11 +12,11 @@
 	<form:form action="managerSaveContract" method="post" modelAttribute="contract">
 		<ul>
 			
-			<li>Name: <form:input path="beginDate" /></li>
-			<li>Name: <form:input path="endDate" /></li>
-			<li>Name: <form:input path="price" /></li>
-			<li>Name: <form:input path="client" /></li>
-			<li>Name: <form:input path="date" /></li>
+			<li>beginDate: <form:input path="beginDate" /></li>
+			<li>endDate: <form:input path="endDate" /></li>
+			<li>price: <form:input path="price"  /></li>
+			<li>client: <form:input path="client" /></li>
+			<li>date: <form:input path="date" /></li>
 
 		</ul>
 		<button type="submit" name="operation" value="add">Save</button>
