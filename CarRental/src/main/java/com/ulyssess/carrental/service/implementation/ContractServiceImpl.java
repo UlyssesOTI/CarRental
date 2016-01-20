@@ -1,17 +1,21 @@
 package com.ulyssess.carrental.service.implementation;
 
+
+import java.util.ArrayList;
+import java.util.List;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ulyssess.carrental.dao.ContractDAO;
+import com.ulyssess.carrental.dto.ContractDTO;
 import com.ulyssess.carrental.entity.Client;
 import com.ulyssess.carrental.entity.Contract;
-import com.ulyssess.carrental.entity.Model;
 import com.ulyssess.carrental.entity.Reservation;
 import com.ulyssess.carrental.service.ClientService;
 import com.ulyssess.carrental.service.ContractService;
-import com.ulyssess.carrental.service.ModelService;
 import com.ulyssess.carrental.service.ReservationService;
 
 @Service
@@ -22,9 +26,6 @@ public class ContractServiceImpl implements ContractService{
 	
 	@Autowired
 	private ClientService clientService;
-	
-	@Autowired
-	private ModelService modelService;
 	
 	@Autowired
 	private ContractDAO contractDAO;
@@ -46,13 +47,37 @@ public class ContractServiceImpl implements ContractService{
 		return contract;
 	}
 
+	@Transactional
 	public void add(Contract contract) {
 		contractDAO.add(contract);
 	}
 
+	@Transactional
 	public void update(Contract contract) {
 		contractDAO.update(contract);
 		
+	}
+
+	@Transactional
+	public List<ContractDTO> findAllDTO() {
+		List<ContractDTO> contractDTOs = new ArrayList<ContractDTO>();
+		List<Contract> allContract = contractDAO.findAll(Contract.class);
+		for (Contract contract : allContract) {
+						
+			contractDTOs.add(new ContractDTO(
+					contract.getId(), 
+					contract.getDate().toString(),
+					contract.getBeginDate().toString(), 
+					contract.getEndDate().toString(),
+					contract.getPrice(),
+					"id: "+contract.getClient().getId()+" "
+					+contract.getClient().getLastName()+" "
+					+contract.getClient().getFirstName(), 
+					"id: "+contract.getCar().getId()+" "+
+					"regnumber: "+contract.getCar().getRegNumber()+
+					" "+contract.getCar().getModel().getModelName(), "", " "));
+		}
+		return contractDTOs;
 	}
 
 

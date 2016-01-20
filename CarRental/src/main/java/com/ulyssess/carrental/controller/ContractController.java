@@ -26,7 +26,13 @@ public class ContractController {
 	@Autowired
 	private CarService carService;
 	
-	@RequestMapping(value="managerCreateContract", method = RequestMethod.POST)
+	@RequestMapping(value="/managerAllContracts")
+	private String managerAllContracts(Model model){
+		model.addAttribute("contracts",contractService.findAllDTO());
+		return "manager-allContracts";
+	}
+	
+	@RequestMapping(value="/managerCreateContract", method = RequestMethod.POST)
 	private String managerCreateContract(Model model,
 				@RequestParam(value="reservationId") String reservID,
 				@RequestParam(value="clientId") String clientId,
@@ -35,17 +41,17 @@ public class ContractController {
 		Contract contract = contractService.createNewContract(reservID, clientId);
 		contract.setDate(new Date());
 		model.addAttribute("contract", contract);	
-		String begin = contract.getBeginDate().getMonth()+"/"+
+		String begin = (contract.getBeginDate().getMonth()+1)+"/"+
 				contract.getBeginDate().getDate()+"/"+
-				contract.getBeginDate().getYear();
-		String end = contract.getEndDate().getMonth()+"/"+
+				(contract.getBeginDate().getYear()+1900);
+		String end = (contract.getEndDate().getMonth()+1)+"/"+
 				contract.getEndDate().getDate()+"/"+
-				contract.getEndDate().getYear();
+				(contract.getEndDate().getYear()+1900);
 		model.addAttribute("cars", carService.findFreeCarsDTObyModelId(begin, end, modelId));
 		return "manager-newContract";
 	}
 	
-	@RequestMapping(value="managerSaveContract", method = RequestMethod.POST)
+	@RequestMapping(value="/managerSaveContract", method = RequestMethod.POST)
 	private String managerSaveContract(@ModelAttribute("contract")  @Valid Contract contract, 
 	 		BindingResult bindingResult,
 	 		Model model){
@@ -53,6 +59,6 @@ public class ContractController {
 		if(!bindingResult.hasErrors()){
 			contractService.update(contract);
 		}
-		return "manager-allContracts";
+		return "redirect:/managerAllContracts";
 	}
 }

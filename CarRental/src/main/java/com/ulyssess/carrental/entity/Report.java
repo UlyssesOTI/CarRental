@@ -10,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Report {
@@ -18,7 +17,6 @@ public class Report {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	@DateTimeFormat(pattern = "MM/dd/yyyy")
 	private Date date;
 	private String type;
 	private String info;

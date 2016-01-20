@@ -12,21 +12,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
-
-
 @Entity
 public class Reservation {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	@DateTimeFormat(pattern = "MM/dd/yyyy")
 	private Date date;
-	@DateTimeFormat(pattern = "MM/dd/yyyy")
 	private Date beginDate;
-	@DateTimeFormat(pattern = "MM/dd/yyyy")
 	private Date endDate;
 	private Double summ;
 	@ManyToOne(cascade={CascadeType.MERGE}, fetch = FetchType.LAZY)
@@ -34,7 +27,7 @@ public class Reservation {
 	@ManyToOne(cascade={CascadeType.MERGE}, fetch = FetchType.LAZY)
 	private Model model;
 	@OneToOne
-	@JoinColumn(name = "id")
+	@JoinColumn(name = "contract_fk")
 	private Contract contract;
 	
 	public Reservation() {

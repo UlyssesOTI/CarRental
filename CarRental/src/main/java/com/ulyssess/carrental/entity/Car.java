@@ -13,7 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import org.springframework.format.annotation.DateTimeFormat;
 
 import com.ulyssess.carrental.enums.Color;
 
@@ -25,7 +24,6 @@ public class Car {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String regNumber;
-	@DateTimeFormat(pattern = "MM/dd/yyyy")
 	private Date regDate;
 	
 	

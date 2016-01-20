@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ulyssess.carrental.dao.ClientDAO;
 import com.ulyssess.carrental.entity.Client;
-import com.ulyssess.carrental.entity.Model;
 import com.ulyssess.carrental.service.ClientService;
 
 @Service

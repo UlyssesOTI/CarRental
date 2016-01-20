@@ -11,7 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Manager {
@@ -23,7 +22,6 @@ public class Manager {
 	private String firstName;
 	private String login;
 	private String password;
-	@DateTimeFormat(pattern = "MM/dd/yyyy")
 	private Date hiringDate;
 	@OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY, mappedBy = "manager")
 	private List<Contract> contracts;

@@ -12,9 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ulyssess.carrental.controller.DateParse;
 import com.ulyssess.carrental.dao.CarDAO;
 import com.ulyssess.carrental.dto.CarAllPageDTO;
-import com.ulyssess.carrental.dto.ModelAllPageDTO;
 import com.ulyssess.carrental.entity.Car;
-import com.ulyssess.carrental.entity.Model;
 import com.ulyssess.carrental.service.CarService;
 
 @Service

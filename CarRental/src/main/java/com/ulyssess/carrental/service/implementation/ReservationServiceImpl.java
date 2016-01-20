@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ulyssess.carrental.controller.DateParse;
 import com.ulyssess.carrental.dao.ReservationDAO;
 import com.ulyssess.carrental.dto.ReservationAllDTO;
-import com.ulyssess.carrental.entity.Client;
 import com.ulyssess.carrental.entity.Reservation;
 import com.ulyssess.carrental.service.ReservationService;
 

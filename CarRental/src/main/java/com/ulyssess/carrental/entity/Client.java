@@ -11,7 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import org.springframework.format.annotation.DateTimeFormat;
 
 
 @Entity
@@ -24,7 +23,6 @@ public class Client {
 	private String firstName;
 	private String email;
 	private String password;
-	@DateTimeFormat(pattern = "MM/dd/yyyy")
 	private Date regDate;
 	private int rating;
 	@OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY, mappedBy = "client")
