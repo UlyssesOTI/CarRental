@@ -49,6 +49,7 @@
             	<ref bean="doubleFormatter"/>
             	<ref bean="clientFormatter"/>
             	<ref bean="carFormatter"/>
+            	<ref bean="reservationFormatter"/>
            	</set>
     	</property>
     	

@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -32,7 +33,8 @@ public class Contract {
 	private Manager manager;
 	@OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY, mappedBy = "contract")
 	private List<Report> reports;
-	@OneToOne(mappedBy="contract")
+	@OneToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "reservation_fk")
 	private Reservation reservation;
 	
 	public Contract() {

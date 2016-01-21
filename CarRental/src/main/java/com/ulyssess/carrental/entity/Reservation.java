@@ -26,8 +26,7 @@ public class Reservation {
 	private Client client;
 	@ManyToOne(cascade={CascadeType.MERGE}, fetch = FetchType.LAZY)
 	private Model model;
-	@OneToOne
-	@JoinColumn(name = "contract_fk")
+	@OneToOne(mappedBy="reservation", cascade = CascadeType.PERSIST)
 	private Contract contract;
 	
 	public Reservation() {

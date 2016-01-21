@@ -30,6 +30,10 @@
 						</c:forEach>
 					  </form:select>
 			</li>
+			<li>reservation: <form:select path="reservation"> 
+						<form:option value="${contract.reservation.id}" label="${contract.reservation.id} ${contract.reservation.summ}" />
+					  </form:select> 
+			</li>
 
 		</ul>
 		<button type="submit" name="operation" value="add">Save</button>

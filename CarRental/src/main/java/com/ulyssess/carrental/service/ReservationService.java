@@ -14,5 +14,7 @@ public interface ReservationService {
 	public Reservation findById(String id);
 	
 	public List<ReservationAllDTO> findNewReservations(String begin, String end);
+	
+	public void caluclateSum(Reservation reservation);
 
 }

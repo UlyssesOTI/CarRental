@@ -4,6 +4,7 @@ import java.io.IOException;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -44,7 +45,7 @@ public class ModelController {
 		
 	@RequestMapping(value="/managerEditModel")
 	private String editModel(Model model,@RequestParam(value="id") String id){
-		com.ulyssess.carrental.entity.Model carModel = modelService.findById(id);
+		com.ulyssess.carrental.entity.Model carModel = modelService.findByIdForEdit(id);
 		System.out.println(carModel.getMark().toString());
 		model.addAttribute("model",carModel);
 		model.addAttribute("marks",markService.findAll());

@@ -117,4 +117,30 @@ public class ModelServiceImpl implements ModelService{
 	public void update(Model model) {
 		modelDAO.update(model);
 	}
+
+	@Transactional
+	public Model findByIdForEdit(String Id) {
+		int id=0;
+		Model carModel = null;
+		Model result = new Model();
+		try {
+			id = Integer.parseInt(Id);
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		}
+		if(id != 0){
+			carModel = modelDAO.findByKey(Model.class, id);
+			result.setId(carModel.getId());
+			result.setImage(carModel.getImage());
+			result.setDayPrice(carModel.getDayPrice());
+			result.setGearBox(carModel.getGearBox());
+			result.setCars(carModel.getCars());
+			result.setMark(carModel.getMark());
+			result.setModelClass(carModel.getModelClass());
+			result.setModelName(carModel.getModelName());
+			result.setReservations(carModel.getReservations());
+			result.setSeats(carModel.getSeats());
+		}
+		return result;
+	}
 }

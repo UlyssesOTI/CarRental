@@ -39,10 +39,11 @@ public class ReservationController {
 				@RequestParam("begin") String  begin,
 				@RequestParam("end") String end){
 		Reservation reservation = new Reservation();
-//		reservation.setBeginDate(DateParse.parse(begin));
-//		reservation.setEndDate(DateParse.parse(end));
+		reservation.setBeginDate(DateParse.parse(begin));
+		reservation.setEndDate(DateParse.parse(end));
 		reservation.setModel(modelService.findById(id));
 		reservation.setClient(clientService.findById(principal.getName()));
+		reservationService.caluclateSum(reservation);
 		model.addAttribute("reservation", reservation);
 		model.addAttribute("begin", begin);
 		model.addAttribute("end", end);
@@ -59,16 +60,12 @@ public class ReservationController {
 	@RequestMapping(value = "/clientSaveReservation", method = RequestMethod.POST)
 	private String saveReservation(
 			@ModelAttribute(value="reservation") @Valid Reservation reservation,
-			@RequestParam("begin") String  begin,
-			@RequestParam("end") String end, 
 			BindingResult bindingResult,
 			Model model){
 		if(bindingResult.hasErrors()){
 			
 		}else{
 			reservation.setDate(new Date());
-			reservation.setBeginDate(DateParse.parse(begin));
-			reservation.setEndDate(DateParse.parse(end));
 			reservationService.add(reservation);
 		}
 		return "client-complete";

@@ -1,7 +1,9 @@
 package com.ulyssess.carrental.service.implementation;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -66,6 +68,13 @@ public class ReservationServiceImpl implements ReservationService {
 			reservation = reservationDAO.findByKey(Reservation.class, reservationId);
 		}
 		return reservation;
+	}
+
+	public void caluclateSum(Reservation reservation) {
+		reservation.setSumm(
+				reservation.getModel().getDayPrice()*
+				DateParse.getDateDiff(reservation.getBeginDate(),reservation.getEndDate(), TimeUnit.DAYS));
+		
 	}
 
 }

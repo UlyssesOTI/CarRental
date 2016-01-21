@@ -13,6 +13,8 @@ public interface ModelService {
 	
 	public Model findById(String Id);
 	
+	public Model findByIdForEdit(String Id);
+	
 	public List<Model> findAll();
 	
 	public List<ModelAllPageDTO> findAllDTO();
