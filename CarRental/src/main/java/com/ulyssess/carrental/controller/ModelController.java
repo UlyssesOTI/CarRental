@@ -46,14 +46,11 @@ public class ModelController {
 	@RequestMapping(value="/managerEditModel")
 	private String editModel(Model model,@RequestParam(value="id") String id){
 		com.ulyssess.carrental.entity.Model carModel = modelService.findByIdForEdit(id);
-		System.out.println(carModel.getMark().toString());
 		model.addAttribute("model",carModel);
 		model.addAttribute("marks",markService.findAll());
 		model.addAttribute("gearBoxs", GearBox.values());
 		return "model-edit";
 	}
-	
-	
 	
 	
 	@RequestMapping(value="/managerSaveModel" ,method = RequestMethod.POST)
@@ -72,8 +69,10 @@ public class ModelController {
 		}else{
 			byte[] image;
 			try {
-				image = multipartFile.getBytes();
-				carModel.setImage(image);
+				if(!multipartFile.isEmpty()){
+					image = multipartFile.getBytes();
+					carModel.setImage(image);
+				}
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

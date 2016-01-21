@@ -19,6 +19,10 @@
 				</form:select>
 			</li>
 			<li>Day price:<form:input path="dayPrice" /></li>
+			<li>Upload image:
+			     <input type="file" name="file" />   
+			        <input type="submit" value="upload" />
+		    </li>
 			
 		</ul>
 		<button type="submit" name="operation" value="update">Save</button>
