@@ -33,48 +33,53 @@
 
 </head>
 <body>
-	<form action="allClientsAvailableModels" method="post">
-		<h2>Input Data</h2>
-			<p>Pick-Up Date: <input type="text" id="datepicker1" name="begin" value="${begin}"></p>
-			<p>Drop-Off Date: <input type="text" id="datepicker2" name="end" value="${end}"></p>			
-		<button type="submit">Submit</button>
-	</form>
 	
-	<div class="CarList">
-		<c:forEach var="model" items="${models}">
-		
-			<div class="CarResult">
-				
-				<div class="CarResultDetail">
-				
-					<h4 class="headerCarList">
-						<img  src="data:image/jpeg;base64,${model.image}" height="150" width="250"/>
-					</h4>
-					<ul>
-						<li><h3>${model.markName}</h3></li>
-						<li><h3>${model.modelName}</h3></li>
-						<li>Seats: ${model.seats}</li>
-						<li>Gear box: ${model.gearBox}</li>
-						<li>Day price: ${model.dayPrice}</li>	
-						<form:form action="clientReserveModel" method="post">
-							<input type="hidden" name="begin" value="${begin}">
-							<input type="hidden" name="end" value="${end}">
-							<input type="hidden" name="id" value="${model.id}">
-							<button type="submit">Reserve</button>
-						</form:form>						
-					</ul>
-					
-				</div>
-				
-			</div>		
+	<div class="panel">
+	
+		<div class="filterPanel">
+			<form action="allClientsAvailableModels" method="post">
+				<h2>Input Data</h2>
+					<p>Pick-Up Date: <input type="text" id="datepicker1" name="begin" value="${begin}"></p>
+					<p>Drop-Off Date: <input type="text" id="datepicker2" name="end" value="${end}"></p>			
+				<button type="submit">Submit</button>
+			</form>
+		</div>
+	
+		<div class="CarList">
+			<c:forEach var="model" items="${models}">
 			
-		</c:forEach>
+				<div class="CarResult">
+					
+					<div class="CarResultDetail">
+					
+						<h4 class="headerCarList">
+							<img  src="data:image/jpeg;base64,${model.image}" height="150" width="250"/>
+						</h4>
+						<ul>
+							<li><h3>${model.markName}</h3></li>
+							<li><h3>${model.modelName}</h3></li>
+							<li>Seats: ${model.seats}</li>
+							<li>Gear box: ${model.gearBox}</li>
+							<li>Day price: ${model.dayPrice}</li>	
+							<form:form action="clientReserveModel" method="post">
+								<input type="hidden" name="begin" value="${begin}">
+								<input type="hidden" name="end" value="${end}">
+								<input type="hidden" name="id" value="${model.id}">
+								<button type="submit">Reserve</button>
+							</form:form>						
+						</ul>
+						
+					</div>
+					
+				</div>		
+				
+			</c:forEach>
 	
 		
+		</div>
+
+
 	</div>
-
-
-	
 
 </body>
 </html>
