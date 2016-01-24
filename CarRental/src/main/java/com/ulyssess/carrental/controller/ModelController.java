@@ -27,13 +27,13 @@ public class ModelController {
 	private MarkService markService;
 
 	
-	@RequestMapping(value="/managerAllModels")
+	@RequestMapping(value="/mShowModels")
 	private String allModels(Model model){
 		model.addAttribute("models",modelService.findAllDTO());
 		return "model-all";
 	}
 	
-	@RequestMapping(value="/managerNewModel")
+	@RequestMapping(value="/mCreateModel")
 	private String newModel(Model model){
 		com.ulyssess.carrental.entity.Model carModel = new com.ulyssess.carrental.entity.Model();
 		model.addAttribute("model",carModel);
@@ -42,7 +42,7 @@ public class ModelController {
 		return "model-new";
 	}
 		
-	@RequestMapping(value="/managerEditModel")
+	@RequestMapping(value="/mEditModel")
 	private String editModel(Model model,@RequestParam(value="id") String id){
 		com.ulyssess.carrental.entity.Model carModel = modelService.findByIdForEdit(id);
 		model.addAttribute("model",carModel);
@@ -52,7 +52,7 @@ public class ModelController {
 	}
 	
 	
-	@RequestMapping(value="/managerSaveModel" ,method = RequestMethod.POST)
+	@RequestMapping(value="/mSaveModel" ,method = RequestMethod.POST)
 	private String saveModel(
 			@ModelAttribute("model") @Valid com.ulyssess.carrental.entity.Model carModel, 
 			@Validated FileClass file,
@@ -61,10 +61,10 @@ public class ModelController {
 			Model model
 			){
 		
-		String returnVal = "redirect:/managerAllModels";
+		String returnVal = "redirect:/mShowModels";
 		MultipartFile multipartFile = file.getFile();
 		if(result.hasErrors()){
-			returnVal = "redirect:/managerNewModel";
+			returnVal = "redirect:/mCreateModel";
 		}else{
 			byte[] image;
 			try {

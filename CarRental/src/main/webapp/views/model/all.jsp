@@ -23,7 +23,7 @@
 						<li>Seats: ${model.seats}</li>
 						<li>Gear box: ${model.gearBox}</li>
 						<li>Day price: ${model.dayPrice}</li>	
-						<form:form action="managerEditModel" method="post">
+						<form:form action="mEditModel" method="post">
 							<input type="hidden" name="id" value="${model.id}">
 							<button type="submit">Edit</button>
 						</form:form>						

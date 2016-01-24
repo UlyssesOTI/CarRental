@@ -32,13 +32,13 @@ public class ContractController {
 	@Autowired
 	private CarService carService;
 	
-	@RequestMapping(value="/managerAllContracts")
+	@RequestMapping(value="/mContracts")
 	private String managerAllContracts(Model model){
 		model.addAttribute("contracts",contractService.findAllDTO());
 		return "manager-allContracts";
 	}
 	
-	@RequestMapping(value="/clientAllContracts")
+	@RequestMapping(value="/cContracts")
 	private String clientAllContracts(Model model, 
 			Principal principal,
 			@RequestParam(value="begin", defaultValue="1/1/1900") String begin,
@@ -48,7 +48,7 @@ public class ContractController {
 	}
 	
 	
-	@RequestMapping(value="/managerClientContracts", method= RequestMethod.POST)
+	@RequestMapping(value="/mClientContracts", method= RequestMethod.POST)
 	private String managerClientContracts(Model model,
 			@RequestParam(value="id") String id,
 			@RequestParam(value="begin", defaultValue="1/1/1900") String begin,
@@ -58,7 +58,7 @@ public class ContractController {
 	}
 	
 	
-	@RequestMapping(value="/managerCreateContract", method = RequestMethod.POST)
+	@RequestMapping(value="/mCreateContract", method = RequestMethod.POST)
 	private String managerCreateContract(Model model,
 				@RequestParam(value="reservationId") String reservID,
 				@RequestParam(value="clientId") String clientId,
@@ -77,7 +77,7 @@ public class ContractController {
 		return "manager-newContract";
 	}
 	
-	@RequestMapping(value="/managerSaveContract", method = RequestMethod.POST)
+	@RequestMapping(value="/mSaveContract", method = RequestMethod.POST)
 	private String managerSaveContract(@ModelAttribute("contract")  @Valid Contract contract, 
 	 		BindingResult bindingResult,
 	 		Model model){
@@ -85,6 +85,6 @@ public class ContractController {
 		if(!bindingResult.hasErrors()){
 			contractService.update(contract);
 		}
-		return "redirect:/managerAllContracts";
+		return "redirect:/mContracts";
 	}
 }

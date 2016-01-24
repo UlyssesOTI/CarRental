@@ -53,13 +53,13 @@ public class CarController {
 		return "file";
 	}
 	
-	@RequestMapping(value = "/managerShowAllCars")
+	@RequestMapping(value = "/mShowCars")
 	public String getAllCars(Model model){
 		model.addAttribute("cars", carService.findAllDTO());
 		return "car-all";
 	}
 	
-	@RequestMapping(value = "/managerCreateNewCar")
+	@RequestMapping(value = "/mCreateCar")
 	public String createCarPage(Model model) {
 		Car car = new Car();
 		model.addAttribute("car", car);
@@ -68,15 +68,15 @@ public class CarController {
 		return "car-new";
 	}
 	 
-	@RequestMapping(value = "/managerNewCar", method = RequestMethod.POST)
+	@RequestMapping(value = "/mNewCar", method = RequestMethod.POST)
 	public String createCars(
 			 		@ModelAttribute("car")  @Valid Car car, 
 			 		BindingResult result,
 			 		Model model){
 		
-		String returnVal = "redirect:/managerShowAllCars";
+		String returnVal = "redirect:/mShowCars";
 		if (result.hasErrors()) {
-			returnVal = "redirect:/managerCreateNewCar";
+			returnVal = "redirect:/mCreateCar";
 		} else {			
 			car.setRegDate(new Date());
 			carService.add(car);

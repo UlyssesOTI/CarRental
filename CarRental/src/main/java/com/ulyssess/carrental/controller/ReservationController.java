@@ -33,7 +33,7 @@ public class ReservationController {
 	@Autowired
 	private ClientService clientService;
 	
-	@RequestMapping(value="/clientReserveModel", method = RequestMethod.POST)
+	@RequestMapping(value="/cReserveModel", method = RequestMethod.POST)
 	private String reserveModel(Model model, Principal principal, 
 				@RequestParam("id") String id,
 				@RequestParam("begin") String  begin,
@@ -50,7 +50,7 @@ public class ReservationController {
 		return "client-reserve";
 	}
 		
-	@RequestMapping(value = "/clientSaveReservation", method = RequestMethod.POST)
+	@RequestMapping(value = "/cSaveReservation", method = RequestMethod.POST)
 	private String saveReservation(
 			@ModelAttribute(value="reservation") @Valid Reservation reservation,
 			BindingResult bindingResult,
@@ -61,10 +61,10 @@ public class ReservationController {
 			reservation.setDate(new Date());
 			reservationService.add(reservation);
 		}
-		return "redirect:/clientCurrentReservations";
+		return "redirect:/cCurrentReservations";
 	}
 	
-	@RequestMapping(value="clientCurrentReservations")
+	@RequestMapping(value="cCurrentReservations")
 	private String clientCurrentReservations(Model model, 
 			Principal principal,
 			@RequestParam(value="begin", defaultValue="1/1/1900") String begin,
@@ -73,7 +73,7 @@ public class ReservationController {
 		return "client-allReservations";
 	}
 	
-	@RequestMapping(value="clientAllReservations")
+	@RequestMapping(value="cAllReservations")
 	private String clientAllReservations(Model model, 
 			Principal principal,
 			@RequestParam(value="begin", defaultValue="1/1/1900") String begin,
@@ -82,13 +82,13 @@ public class ReservationController {
 		return "client-allReservations";
 	}
 	
-	@RequestMapping(value="clientDiscardReservation")
+	@RequestMapping(value="cDiscardReservation")
 	private String clientDiscardReservation(@RequestParam(value="id") String id){
 		reservationService.remove(id);
-		return "redirect:/clientCurrentReservations";
+		return "redirect:/cCurrentReservations";
 	}
 	
-	@RequestMapping(value="/managerNewReservations")
+	@RequestMapping(value="/mNewReservations")
 	private String managerNewReservations(Model model,
 					@RequestParam(value="begin", defaultValue="1/1/1900") String begin,
 					@RequestParam(value="end", defaultValue="1/1/9999") String end){
@@ -97,7 +97,7 @@ public class ReservationController {
 		return "manager-allReservations";
 	}
 	
-	@RequestMapping(value="/managerAllReservations")
+	@RequestMapping(value="/mAllReservations")
 	private String managerAllReservations(Model model,
 					@RequestParam(value="begin", defaultValue="1/1/1900") String begin,
 					@RequestParam(value="end", defaultValue="1/1/9999") String end){

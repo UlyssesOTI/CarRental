@@ -15,7 +15,7 @@
 						<li>First Name: ${client.firstName}</li>
 						<li>Email: ${client.email}</li>
 						<li>regDate: ${client.regDate}</li>												
-						<form:form action="managerClientContracts" method="post">
+						<form:form action="mClientContracts" method="post">
 							<input type="hidden" name="id" value="${client.id}">
 							<button type="submit">All contracts</button>
 						</form:form>						

@@ -10,7 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form:form action="managerSaveContract" method="post" modelAttribute="contract">
+	<form:form action="mSaveContract" method="post" modelAttribute="contract">
 		<ul>
 
 			<fmt:formatDate value="${contract.beginDate}" pattern="MM/dd/yyyy" var="fbeginDate"/>

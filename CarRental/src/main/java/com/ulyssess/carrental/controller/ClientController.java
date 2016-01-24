@@ -39,7 +39,7 @@ public class ClientController {
 		return "client-main";
 	}
 	
-	@RequestMapping(value="/allClientsAvailableModels", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="/AvailableModels", method = {RequestMethod.GET, RequestMethod.POST})
 	private String availableModels(
 				Model model, 
 				@RequestParam(value = "begin" , defaultValue="01/01/0001")  String begin, 
@@ -69,7 +69,7 @@ public class ClientController {
 		return "client-new";
 	}
 	
-	@RequestMapping(value = "/allClientsNewClient", method=RequestMethod.POST)
+	@RequestMapping(value = "/newClient", method=RequestMethod.POST)
 	public String newClient(@ModelAttribute("client")  @Valid Client client,
 			@RequestParam(value="operation") String operation,
 	 		BindingResult bindingResult,
@@ -91,13 +91,13 @@ public class ClientController {
 		return returnVal;
 	}
 	
-	@RequestMapping(value="/managerAllClients")
+	@RequestMapping(value="/mClients")
 	public String managerAllClients(Model model){
 		model.addAttribute("clients", clientService.findAll());
 		return "manager-allClients";
 	}
 	
-	@RequestMapping(value="/clientPersonalInfo")
+	@RequestMapping(value="/cPersonalInfo")
 	public String clientPersonalInfo(Model model, Principal principal){
 		model.addAttribute("client", clientService.findById(principal.getName()));
 		return "client-edit";

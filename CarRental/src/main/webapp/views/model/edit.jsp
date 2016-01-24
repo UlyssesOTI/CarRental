@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <body>
-	<form:form action="managerSaveModel" method="post" modelAttribute="model" enctype="multipart/form-data" >
+	<form:form action="mSaveModel" method="post" modelAttribute="model" enctype="multipart/form-data" >
 		<ul>
 			<li>ID<form:input path="id" readonly="true"/></li>
 			<li>Name: <form:input path="modelName" /></li>

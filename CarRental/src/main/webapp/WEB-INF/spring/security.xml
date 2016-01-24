@@ -10,8 +10,8 @@
 	<http use-expressions="true">
 		<csrf disabled="true" />
 		<intercept-url pattern="/" access="permitAll" />
-		<intercept-url pattern="/client*" access="isAuthenticated()" />
-		<intercept-url pattern="/manager*" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/c*" access="isAuthenticated()" />
+		<intercept-url pattern="/m*" access="hasRole('ROLE_ADMIN')" />
 
 		<logout logout-url="/logout" logout-success-url="/" />
 		

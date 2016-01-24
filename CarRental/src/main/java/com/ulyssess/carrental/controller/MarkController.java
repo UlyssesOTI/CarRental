@@ -19,20 +19,20 @@ public class MarkController {
 	@Autowired
 	private MarkService markService;
 	
-	@RequestMapping(value="/managerAllMarks")
+	@RequestMapping(value="/mShowMarks")
 	private String allModels(Model model){
 		model.addAttribute("marks",markService.findAll());
 		return "mark-all";
 	}
 	
-	@RequestMapping(value="/managerNewMark")
+	@RequestMapping(value="/mCreateMark")
 	private String newModel(Model model){	
 		Mark mark = new Mark();
 		model.addAttribute("mark",mark);
 		return "mark-new";
 	}
 	
-	@RequestMapping(value="/managerEditMark")
+	@RequestMapping(value="/mEditMark")
 	private String editModel(Model model,@RequestParam(value="id") String id){	
 		Mark mark = markService.findById(id);
 		model.addAttribute("mark",mark);
@@ -53,16 +53,16 @@ public class MarkController {
 //	}
 
 	
-	@RequestMapping(value="/managerSaveMark")
+	@RequestMapping(value="/mSaveMark")
 	private String saveMark(
 					@ModelAttribute(value="mark") @Valid Mark mark,
 					@RequestParam(value="operation") String operation,
 					BindingResult bindingResult, 
 					Model model ){
 		
-		String returnVal = "redirect:/managerAllMarks";
+		String returnVal = "redirect:/mShowMarks";
 		if(bindingResult.hasErrors()){
-			returnVal = "redirect/newMark";
+			returnVal = "redirect/mCreateMark";
 		}else{
 			if(operation.equals("add")){
 				markService.add(mark);

@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <body>
-	<form:form action="clientEditClient" method="post" modelAttribute="client">
+	<form:form action="cEditClient" method="post" modelAttribute="client">
 		<ul>
 			<li><form:input path="id" type="hidden"/></li>
 			<li>Last name: <form:input path="lastName"/></li>		

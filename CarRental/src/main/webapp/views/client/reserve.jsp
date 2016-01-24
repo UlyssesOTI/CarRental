@@ -10,7 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form:form action="clientSaveReservation" method="post" modelAttribute="reservation" >
+	<form:form action="cSaveReservation" method="post" modelAttribute="reservation" >
 		<ul>
 			<fmt:formatDate value="${reservation.beginDate}" pattern="MM/dd/yyyy" var="fbeginDate"/>
 			<fmt:formatDate value="${reservation.endDate}" pattern="MM/dd/yyyy" var="fendDate"/>

@@ -18,7 +18,7 @@
 						<li>End date: ${reservation.endDate}</li>
 						<li>Sum: ${reservation.summ}</li>	
 						<c:if test="${reservation.contractId =='0'}">
-							<form:form action="clientDiscardReservation" method="post">
+							<form:form action="cDiscardReservation" method="post">
 							<input type="hidden" name="id" value="${reservation.id}">
 							<button type="submit">Discard reservation</button>
 						</form:form>	

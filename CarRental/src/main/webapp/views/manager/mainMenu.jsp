@@ -11,24 +11,24 @@
 		<ul class="menu">
 			<li><a href="#">Cars</a> 
 				<ul>
-					<li><a href="managerShowAllCars">All cars</a></li>
-					<li><a href="managerCreateNewCar">Add new Car</a></li>
-					<li><a href="managerAllModels">All models</a></li>
-					<li><a href="managerNewModel">Add new model</a></li>
-					<li><a href="managerAllMarks">All marks</a></li>
-					<li><a href="managerNewMark">Add new mark</a></li>
+					<li><a href="mShowCars">All cars</a></li>
+					<li><a href="mCreateCar">Add new Car</a></li>
+					<li><a href="mShowModels">All models</a></li>
+					<li><a href="mCreateModel">Add new model</a></li>
+					<li><a href="mShowMarks">All marks</a></li>
+					<li><a href="mCreateMark">Add new mark</a></li>
 				</ul>
 			</li>
 			<li><a href="#">Contracts</a>
 				<ul>
-					<li><a href="managerNewReservations">New reservations</a></li>
-					<li><a href="managerAllReservations">All reservations</a></li>
-					<li><a href="managerAllContracts">All contracts</a></li>
+					<li><a href="mNewReservations">New reservations</a></li>
+					<li><a href="mAllReservations">All reservations</a></li>
+					<li><a href="mContracts">All contracts</a></li>
 				</ul>
 			</li>
 			<li><a href="#">Clients</a>
 				<ul> 
-					<li><a href="managerAllClients">All clients</a></li>
+					<li><a href="mClients">All clients</a></li>
 				</ul>
 			</li>
 			<li><a href="#">Reporting</a> 

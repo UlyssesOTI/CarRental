@@ -23,7 +23,7 @@
 						<li>End date: ${reservation.endDate}</li>
 						<li>Sum: ${reservation.summ}</li>
 						<c:if test="${reservation.contractId =='0'}">	
-						<form:form action="managerCreateContract" method="post">
+						<form:form action="mCreateContract" method="post">
 							<input type="hidden" name="reservationId" value="${reservation.id}">
 							<input type="hidden" name="clientId" value="${reservation.clientId}">
 							<input type="hidden" name="modelId" value="${reservation.modelId}">

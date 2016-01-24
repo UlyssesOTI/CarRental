@@ -17,14 +17,14 @@
 			</li>
 			<li><a href="#">My contracts</a>
 				<ul>
-					<li><a href="clientAllContracts">My contract history</a></li>
-					<li><a href="clientAllReservations">All reservations</a></li>
-					<li><a href="clientCurrentReservations">Current reservations</a></li>
+					<li><a href="cContracts">My contract history</a></li>
+					<li><a href="cAllReservations">All reservations</a></li>
+					<li><a href="cCurrentReservations">Current reservations</a></li>
 				</ul>
 			</li>
 			<li><a href="#">My Info</a>
 				<ul> 
-					<li><a href="clientPersonalInfo">My personal info</a></li>
+					<li><a href="cPersonalInfo">My personal info</a></li>
 				</ul>
 			</li>
 			<li><a href="#">Reporting</a> 

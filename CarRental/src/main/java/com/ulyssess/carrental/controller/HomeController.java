@@ -18,7 +18,7 @@ public class HomeController {
 	public String home(Model model){
 //		model.addAttribute("marks", markService.findAll());
 //		model.addAttribute("gearBoxs",GearBox.values());
-		return "redirect:/allClientsAvailableModels";
+		return "redirect:/AvailableModels";
 	}
 	
 	@RequestMapping(value = "/loginpage")

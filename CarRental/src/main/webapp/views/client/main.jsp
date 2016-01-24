@@ -38,7 +38,7 @@
 	
 		<div class="filterPanel">
 		
-		<form action="allClientsAvailableModels" method="post">
+		<form action="AvailableModels" method="post">
 		<table class="table">
    			<thead>
       			<tr>
@@ -175,7 +175,7 @@
         		</tr>
         	</tbody>
   		</table>
-  		<form:form action="clientReserveModel" method="post">
+  		<form:form action="cReserveModel" method="post">
 								<input type="hidden" name="begin" value="${begin}">
 								<input type="hidden" name="end" value="${end}">
 								<input type="hidden" name="id" value="${model.id}">
