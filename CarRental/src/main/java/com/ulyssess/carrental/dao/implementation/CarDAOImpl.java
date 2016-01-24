@@ -68,5 +68,38 @@ public class CarDAOImpl extends EntityDAOAbstract<Car, Integer> implements CarDA
 				
 		return resList;
 	}
+	
+	@Transactional
+	public List<Car> findByAll(int marklId,double maxPrice, double minPrice) {
+		List<Car> resList = null;
+		
+		String query = "SELECT "
+				+ "		c "
+				+ "	FROM Car c "
+				+ "WHERE c.model.dayPrice >= :minPrice AND c.model.dayPrice <= :maxPrice";
+				if(marklId!=0){
+					query = query+ "	AND	c.model.mark.id = :marklId";
+				}
+			
+				if(marklId!=0){
+					resList = entityManager.
+							createQuery(query,
+										Car.class).
+							setParameter("marklId", marklId).
+							setParameter("maxPrice", maxPrice).
+							setParameter("minPrice", minPrice).
+							getResultList();
+				}else{
+					resList = entityManager.
+							createQuery(query,
+										Car.class).
+							setParameter("maxPrice", maxPrice).
+							setParameter("minPrice", minPrice).
+							getResultList();
+				}
+		
+			
+		return resList;
+	}
 
 }

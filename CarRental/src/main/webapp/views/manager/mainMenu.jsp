@@ -22,14 +22,13 @@
 			<li><a href="#">Contracts</a>
 				<ul>
 					<li><a href="managerNewReservations">New reservations</a></li>
-					<li><a href="#">All reservations</a></li>
-					<li><a href="#">New contracts</a></li>
+					<li><a href="managerAllReservations">All reservations</a></li>
 					<li><a href="managerAllContracts">All contracts</a></li>
 				</ul>
 			</li>
-			<li><a href="#">Costumers</a>
+			<li><a href="#">Clients</a>
 				<ul> 
-					<li><a href="#">All costumers</a></li>
+					<li><a href="managerAllClients">All clients</a></li>
 				</ul>
 			</li>
 			<li><a href="#">Reporting</a> 

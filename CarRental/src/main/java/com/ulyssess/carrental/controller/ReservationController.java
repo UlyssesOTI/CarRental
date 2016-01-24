@@ -49,14 +49,7 @@ public class ReservationController {
 		model.addAttribute("end", end);
 		return "client-reserve";
 	}
-	
-//	@RequestMapping(value = "/clientCreateNewReservation", method = RequestMethod.POST)
-//	private String clientCreateNewReservation(Model model){
-//		Reservation reservation = new Reservation();
-//		model.addAttribute("reservation", reservation);
-//		return "reservation-new";
-//	}
-	
+		
 	@RequestMapping(value = "/clientSaveReservation", method = RequestMethod.POST)
 	private String saveReservation(
 			@ModelAttribute(value="reservation") @Valid Reservation reservation,
@@ -68,16 +61,49 @@ public class ReservationController {
 			reservation.setDate(new Date());
 			reservationService.add(reservation);
 		}
-		return "client-complete";
+		return "redirect:/clientCurrentReservations";
+	}
+	
+	@RequestMapping(value="clientCurrentReservations")
+	private String clientCurrentReservations(Model model, 
+			Principal principal,
+			@RequestParam(value="begin", defaultValue="1/1/1900") String begin,
+			@RequestParam(value="end", defaultValue="1/1/9999") String end){
+		model.addAttribute("reservations", reservationService.findClientReservations(begin, end, principal.getName(),true));
+		return "client-allReservations";
+	}
+	
+	@RequestMapping(value="clientAllReservations")
+	private String clientAllReservations(Model model, 
+			Principal principal,
+			@RequestParam(value="begin", defaultValue="1/1/1900") String begin,
+			@RequestParam(value="end", defaultValue="1/1/9999") String end){
+		model.addAttribute("reservations", reservationService.findClientReservations(begin, end, principal.getName(),false));
+		return "client-allReservations";
+	}
+	
+	@RequestMapping(value="clientDiscardReservation")
+	private String clientDiscardReservation(@RequestParam(value="id") String id){
+		reservationService.remove(id);
+		return "redirect:/clientCurrentReservations";
 	}
 	
 	@RequestMapping(value="/managerNewReservations")
 	private String managerNewReservations(Model model,
 					@RequestParam(value="begin", defaultValue="1/1/1900") String begin,
 					@RequestParam(value="end", defaultValue="1/1/9999") String end){
-		List<ReservationAllDTO> list = reservationService.findNewReservations(begin, end);
+		List<ReservationAllDTO> list = reservationService.findReservations(begin, end,true);
 		model.addAttribute("reservations", list);
-		return "manager-allNewReservations";
+		return "manager-allReservations";
+	}
+	
+	@RequestMapping(value="/managerAllReservations")
+	private String managerAllReservations(Model model,
+					@RequestParam(value="begin", defaultValue="1/1/1900") String begin,
+					@RequestParam(value="end", defaultValue="1/1/9999") String end){
+		List<ReservationAllDTO> list = reservationService.findReservations(begin, end,false);
+		model.addAttribute("reservations", list);
+		return "manager-allReservations";
 	}
 
 }

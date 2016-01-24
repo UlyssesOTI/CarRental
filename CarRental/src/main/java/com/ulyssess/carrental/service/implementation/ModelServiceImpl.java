@@ -76,16 +76,24 @@ public class ModelServiceImpl implements ModelService{
 	}
 	
 	@Transactional
-	public List<ModelAllPageDTO> findAvailableModelsByPeriod(String begin, String end){
+	public List<ModelAllPageDTO> findAvailableModelsByPeriod(String begin, String end,String markId,String gearBoxId,String minPrice,String maxPrice){
 		List<ModelAllPageDTO> modelToPage = new ArrayList<ModelAllPageDTO>();
 		Date beginDate = DateParse.parse(begin);
 		Date endDate = DateParse.parse(end);
 		Set<Model> resSet = new LinkedHashSet<Model>();
-		List<Car> allCars = carDAO.findAll(Car.class);
+		
+		int idMark = Integer.parseInt(markId);
+		int idGearBox = Integer.parseInt(gearBoxId);
+		
+		List<Car> allCars = carDAO.findByAll(idMark, Double.parseDouble(maxPrice), Double.parseDouble(minPrice));
 		List<Car> renredCars = carDAO.findRentedCars(beginDate, endDate);
 		allCars.removeAll(renredCars);
 		for (Car car : allCars) {
-			resSet.add(car.getModel());
+			if(idGearBox < 0){
+				resSet.add(car.getModel());
+			}else if(car.getModel().getGearBox().ordinal()==idGearBox){
+				resSet.add(car.getModel());
+			}
 		}	
 		for (Model model : resSet) {
 			byte[] encodeBase64 = Base64.encodeBase64(model.getImage());

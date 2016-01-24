@@ -1,5 +1,6 @@
 package com.ulyssess.carrental.controller;
 
+import java.security.Principal;
 import java.util.Date;
 
 import javax.validation.Valid;
@@ -37,13 +38,33 @@ public class ContractController {
 		return "manager-allContracts";
 	}
 	
+	@RequestMapping(value="/clientAllContracts")
+	private String clientAllContracts(Model model, 
+			Principal principal,
+			@RequestParam(value="begin", defaultValue="1/1/1900") String begin,
+			@RequestParam(value="end", defaultValue="1/1/9999") String end){
+		model.addAttribute("contracts", contractService.findByClientDTO(begin,end,principal.getName()));
+		return "client-allContracts";
+	}
+	
+	
+	@RequestMapping(value="/managerClientContracts", method= RequestMethod.POST)
+	private String managerClientContracts(Model model,
+			@RequestParam(value="id") String id,
+			@RequestParam(value="begin", defaultValue="1/1/1900") String begin,
+			@RequestParam(value="end", defaultValue="1/1/9999") String end){
+		model.addAttribute("contracts", contractService.findByClientDTO(begin,end,id));
+		return "manager-allContracts";
+	}
+	
+	
 	@RequestMapping(value="/managerCreateContract", method = RequestMethod.POST)
 	private String managerCreateContract(Model model,
 				@RequestParam(value="reservationId") String reservID,
 				@RequestParam(value="clientId") String clientId,
 				@RequestParam(value="modelId") String modelId){
 		
-		Contract contract = contractService.createNewContract(reservID, clientId);
+		Contract contract = contractService.createNew(reservID, clientId);
 		contract.setDate(new Date());
 		model.addAttribute("contract", contract);	
 		String begin = (contract.getBeginDate().getMonth()+1)+"/"+

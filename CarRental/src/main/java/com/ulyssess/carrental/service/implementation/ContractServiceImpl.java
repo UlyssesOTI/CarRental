@@ -31,12 +31,10 @@ public class ContractServiceImpl implements ContractService{
 	private ContractDAO contractDAO;
 
 	@Transactional
-	public Contract createNewContract(String reservID, String clientId) {
+	public Contract createNew(String reservID, String clientId) {
 		Contract contract = new Contract();
 		Reservation reservation = reservationService.findById(reservID);
 		Client client = clientService.findById(clientId);
-		//Model model = modelService.findById(modelId);
-		
 		contract.setBeginDate(reservation.getBeginDate());
 		contract.setEndDate(reservation.getEndDate());
 		contract.setClient(client);
@@ -64,6 +62,28 @@ public class ContractServiceImpl implements ContractService{
 		List<Contract> allContract = contractDAO.findAll(Contract.class);
 		for (Contract contract : allContract) {
 						
+			contractDTOs.add(new ContractDTO(
+					contract.getId(), 
+					contract.getDate().toString(),
+					contract.getBeginDate().toString(), 
+					contract.getEndDate().toString(),
+					contract.getPrice(),
+					"id: "+contract.getClient().getId()+" "
+					+contract.getClient().getLastName()+" "
+					+contract.getClient().getFirstName(), 
+					"id: "+contract.getCar().getId()+" "+
+					"regnumber: "+contract.getCar().getRegNumber()+
+					" "+contract.getCar().getModel().getModelName(), "", " "));
+		}
+		return contractDTOs;
+	}
+
+	public Object findByClientDTO(String begin, String end, String id) {
+		List<ContractDTO> contractDTOs = new ArrayList<ContractDTO>();
+		List<Client> clients = new ArrayList<Client>();
+		clients.add(clientService.findById(id));
+		List<Contract> allContract = contractDAO.findByClients(clients);
+		for (Contract contract : allContract) {
 			contractDTOs.add(new ContractDTO(
 					contract.getId(), 
 					contract.getDate().toString(),

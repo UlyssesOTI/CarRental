@@ -21,7 +21,7 @@ public class ContractDAOImpl extends EntityDAOAbstract<Contract, Integer> implem
 	private EntityManager entityManager;
 
 	@Transactional
-	public List<Contract> finfByClients(List<Client> clients) {
+	public List<Contract> findByClients(List<Client> clients) {
 		List<Contract> resList = null;
 		resList = entityManager.
 				createQuery("SELECT"
@@ -34,7 +34,7 @@ public class ContractDAOImpl extends EntityDAOAbstract<Contract, Integer> implem
 	}
 
 	@Transactional
-	public List<Contract> finfByCars(List<Car> cars) {
+	public List<Contract> findByCars(List<Car> cars) {
 		List<Contract> resList = null;
 		resList = entityManager.
 				createQuery("SELECT"

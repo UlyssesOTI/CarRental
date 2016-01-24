@@ -1,4 +1,4 @@
-package com.ulyssess.carrental.controller;
+package com.ulyssess.carrental.formatter;
 
 import java.text.ParseException;
 import java.util.Locale;

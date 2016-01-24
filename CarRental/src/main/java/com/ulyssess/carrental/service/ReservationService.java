@@ -11,10 +11,14 @@ public interface ReservationService {
 	
 	public void update(Reservation reservation);
 	
+	public void remove(String id);
+	
 	public Reservation findById(String id);
 	
-	public List<ReservationAllDTO> findNewReservations(String begin, String end);
+	public List<ReservationAllDTO> findReservations(String begin, String end, boolean onlyNew);
 	
 	public void caluclateSum(Reservation reservation);
+
+	public List<ReservationAllDTO> findClientReservations(String begin, String end, String id,  boolean onlyNew);
 
 }

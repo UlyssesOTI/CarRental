@@ -19,6 +19,6 @@ public interface ModelService {
 	
 	public List<ModelAllPageDTO> findAllDTO();
 	
-	public List<ModelAllPageDTO> findAvailableModelsByPeriod(String begin, String end);
+	public List<ModelAllPageDTO> findAvailableModelsByPeriod(String begin, String end,String markId,String gearBoxId,String minPrice,String maxPrice);
 
 }

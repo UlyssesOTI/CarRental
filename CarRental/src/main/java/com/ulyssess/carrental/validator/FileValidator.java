@@ -1,4 +1,4 @@
-package com.ulyssess.carrental.dao.validator;
+package com.ulyssess.carrental.validator;
 
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;

@@ -1,4 +1,4 @@
-package com.ulyssess.carrental.controller;
+package com.ulyssess.carrental.formatter;
 
 import java.text.ParseException;
 import java.util.Date;
@@ -6,6 +6,8 @@ import java.util.Locale;
 
 import org.springframework.format.Formatter;
 import org.springframework.stereotype.Component;
+
+import com.ulyssess.carrental.controller.DateParse;
 
 @Component
 public class DateFormatter implements Formatter<Date>{

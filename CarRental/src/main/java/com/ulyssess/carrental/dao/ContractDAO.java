@@ -9,9 +9,9 @@ import com.ulyssess.carrental.entity.Contract;
 
 public interface ContractDAO extends EntityDAO<Contract, Integer>{
 	
-	public List<Contract> finfByClients(List<Client> clients);
+	public List<Contract> findByClients(List<Client> clients);
 	
-	public List<Contract> finfByCars(List<Car> cars);
+	public List<Contract> findByCars(List<Car> cars);
 	
 	public List<Contract> findByRentPeriod(Date begin, Date end);
 

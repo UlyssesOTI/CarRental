@@ -12,10 +12,10 @@
 	<import resource="classpath:/META-INF/appContext.xml"/>		
 	
 	<bean id="carValidator"
-		class="com.ulyssess.carrental.controller.CarValidator" />
+		class="com.ulyssess.carrental.validator.CarValidator" />
 		
 	<bean id="fileValidator"
-		class="com.ulyssess.carrental.dao.validator.FileValidator" />
+		class="com.ulyssess.carrental.validator.FileValidator" />
 	
 	
 	<bean id="multipartResolver"

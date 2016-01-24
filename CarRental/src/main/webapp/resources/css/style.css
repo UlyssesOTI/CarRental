@@ -6,10 +6,32 @@
 }
 
 .log{
+	position: absolute;
 	background-color: white;
     width: 200px;
     height: 50px;
     text-align: center;
+}
+
+.table {
+	display: block;
+    text-align: left;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 10px;
+}
+
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
 }
 
 .bodyMain{
@@ -22,18 +44,19 @@
 
 .panel{
     position: relative;
+    overflow: auto;
     width: 1200px;
     margin-left:auto;
     margin-right:auto;
     background-color: rgba(219,203,187,0.5);
-    min-height: 800px;
+    height: auto;
 }
 
 .filterPanel{
     position: relative;
-    width: 400px;
-    background-color: rgba(219,203,187,0.9);
-    min-height: 500px;
+    width: 1200px;
+    background-color: rgba(219,203,187,0.5);
+    min-height: 50px;
 }
 
 .MainDiv{
@@ -57,6 +80,13 @@
     background: url(../images/top.png) no-repeat center top;
 }
 
+.aHeader {
+	position:absolute;
+     display: block; /* Ссылка как блочный элемент */
+     text-align: center; /* Выравнивание по центру */
+     height: 100%; /* Высота на весь слой */
+   width: 100%;
+    }
 
 
 .MainMenu{

@@ -10,13 +10,23 @@
 <title>Insert title here</title>
 </head>
 	<body>
+		<sec:authorize access="isAuthenticated()">
+			<a class="aHeader" href="/CarRental"></a>
+		</sec:authorize>
+		<sec:authorize access="hasRole('ADMIN')">
+			<a class="aHeader" href="managerMain"></a>
+		</sec:authorize>
+	
 		<div class="log">
 			<sec:authorize access="isAuthenticated()">
-				Hello, <sec:authentication property="name"/>
+				Hello, 
 				<a href="logout">Logout</a>
 			</sec:authorize>
 			<sec:authorize access="isAnonymous()">
 				<a href="loginpage">Login</a>
+			</sec:authorize>
+			<sec:authorize access="hasRole('ADMIN')">
+				<a href="managerMain">Manager main page</a>
 			</sec:authorize>
 		</div>
 	</body>

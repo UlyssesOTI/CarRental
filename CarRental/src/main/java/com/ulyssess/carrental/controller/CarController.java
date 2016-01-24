@@ -12,12 +12,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.ulyssess.carrental.dao.validator.FileClass;
-import com.ulyssess.carrental.dao.validator.FileValidator;
+
 import com.ulyssess.carrental.entity.Car;
 import com.ulyssess.carrental.enums.Color;
 import com.ulyssess.carrental.service.CarService;
 import com.ulyssess.carrental.service.ModelService;
+import com.ulyssess.carrental.validator.CarValidator;
+import com.ulyssess.carrental.validator.FileClass;
+import com.ulyssess.carrental.validator.FileValidator;
 
 @Controller
 public class CarController {

@@ -1,4 +1,4 @@
-package com.ulyssess.carrental.controller;
+package com.ulyssess.carrental.formatter;
 
 import java.text.ParseException;
 import java.util.Locale;
@@ -14,10 +14,7 @@ import com.ulyssess.carrental.service.ModelService;
 public class ModelFormatter implements Formatter<Model> {
      @Autowired
      private ModelService modelService;
-     //Some service class which can give the Actor after
-     //fetching from Database
- 
-    
+         
      public String print(Model model, Locale arg1) {
            return model.getModelName().toString();
      }
@@ -25,7 +22,6 @@ public class ModelFormatter implements Formatter<Model> {
      
      public Model parse(String id, Locale arg1) throws ParseException {
           return modelService.findById(id);
-          //Else you can just return a new object by setting some values
-           //which you deem fit.
+          
      }
 }

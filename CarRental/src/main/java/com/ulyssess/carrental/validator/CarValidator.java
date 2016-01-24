@@ -1,8 +1,9 @@
-package com.ulyssess.carrental.controller;
+package com.ulyssess.carrental.validator;
 
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
+
 import com.ulyssess.carrental.entity.Car;
 
 @Component
