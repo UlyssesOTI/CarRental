@@ -1,6 +1,7 @@
 package com.ulyssess.carrental.controller;
 
 import java.security.Principal;
+import java.text.DateFormat;
 import java.util.Date;
 
 import javax.validation.Valid;
@@ -67,12 +68,8 @@ public class ContractController {
 		Contract contract = contractService.createNew(reservID, clientId);
 		contract.setDate(new Date());
 		model.addAttribute("contract", contract);	
-		String begin = (contract.getBeginDate().getMonth()+1)+"/"+
-				contract.getBeginDate().getDate()+"/"+
-				(contract.getBeginDate().getYear()+1900);
-		String end = (contract.getEndDate().getMonth()+1)+"/"+
-				contract.getEndDate().getDate()+"/"+
-				(contract.getEndDate().getYear()+1900);
+		String begin = DateParse.format(contract.getBeginDate());				
+		String end = DateParse.format(contract.getEndDate());					
 		model.addAttribute("cars", carService.findFreeCarsDTObyModelId(begin, end, modelId));
 		return "manager-newContract";
 	}

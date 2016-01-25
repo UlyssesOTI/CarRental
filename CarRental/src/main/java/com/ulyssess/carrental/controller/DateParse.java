@@ -12,6 +12,12 @@ public class DateParse {
 		return new Date();
 	}
 	
+	public static String format(Date date){
+		return (date.getMonth()+1)+"/"+
+				date.getDate()+"/"+
+				(date.getYear()+1900);
+	}
+	
 	public static long getDateDiff(Date date1, Date date2, TimeUnit timeUnit) {
 	    long diffInMillies = date2.getTime() - date1.getTime() +86400000;
 	    return timeUnit.convert(diffInMillies,TimeUnit.MILLISECONDS);

@@ -7,12 +7,45 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="loginprocessing" method="post">
+<div class="panel">
+<form action="loginprocessing" method="post">
+	<table class="tableClient">
+		<thead>
+      					<tr>
+  			      			<th></th>     			  			
+  			      			<th></th>
+       					</tr>
+    				</thead>
+    				<tbody class="tbodyClient">
+      			
+       			 		<tr class="success">
+       			 			<td><h3>Login: </h3></td>
+       			 			<td><h5><input type="text" name="username"> </h5></td>        		        			
+        				</tr>
+        				
+        				<tr class="success">
+       			 			<td><h3>Password: </h3></td>
+       			 			<td><h5><input type="password" name="password"> </h5></td>        		        			
+        				</tr>
+        				<tr class="success">
+       			 			<td></td>
+       			 			<td><input type="submit" value="Login"></td>        		        			
+        				</tr>
+        				
+        				<tr class="success">
+       			 			<td></td>
+       			 			<td><a href="signIn">Sign in</a></td>        		        			
+        				</tr>
+	</tbody>
+	</table>
+</form>
+	<!-- <form action="loginprocessing" method="post">
 		Login <input type="text" name="username">
 		Password <input type="password" name="password">
 		<input type="submit" value="Login">
 	</form>
 	
-	<a href="signIn">Sign in</a>
+	<a href="signIn">Sign in</a> -->
+</div>
 </body>
 </html>

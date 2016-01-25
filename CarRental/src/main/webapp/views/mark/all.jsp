@@ -3,13 +3,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
+<div class="panel">
 
 
-<div class="CarList">
 		
 		
-			<div class="CarResult">
-				<table >
+			
+				<table class="tableClient">
 					<thead>
 						<tr>
 							<th>Id</th>
@@ -17,7 +17,7 @@
 							<th></th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody class="tbodyClient">
 						<c:forEach var="mark" items="${marks}">
 							<tr>
 								<td><h4>${mark.id}</h4></td>
@@ -38,7 +38,7 @@
 				
 				
 					
-			</div>		
+			
 	</div>
 	
 	

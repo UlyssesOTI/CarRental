@@ -43,13 +43,19 @@ public class ClientController {
 	@RequestMapping(value="/AvailableModels", method = {RequestMethod.GET, RequestMethod.POST})
 	private String availableModels(
 				Model model, 
-				@RequestParam(value = "begin" , defaultValue="01/01/0001")  String begin, 
-				@RequestParam(value = "end", defaultValue="01/01/0001") String end,
+				@RequestParam(value = "begin" , defaultValue=""  )  String begin, 
+				@RequestParam(value = "end", defaultValue="") String end,
 				@RequestParam(value = "mark", defaultValue="0") String markId,
 				@RequestParam(value = "gearBox", defaultValue="-1") String gearBoxId,
 				@RequestParam(value = "minPrice", defaultValue="0") String minPrice,
-				@RequestParam(value = "maxPrice", defaultValue="0") String maxPrice){
+				@RequestParam(value = "maxPrice", defaultValue="99999") String maxPrice){
+		if(begin.isEmpty()){
+			begin = DateParse.format(new Date());
+		}
 		
+		if(end.isEmpty()){
+			end = DateParse.format(new Date());
+		}		
 		List<ModelAllPageDTO> models = modelService.findAvailableModelsByPeriod(begin, end, markId, gearBoxId,minPrice, maxPrice);
 		model.addAttribute("models", models);
 		model.addAttribute("begin", begin);
