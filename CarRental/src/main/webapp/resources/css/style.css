@@ -21,18 +21,31 @@
     margin-bottom: 10px;
 }
 
-tbody {
+.tableClient{
+	display: block;
+    text-align: left;
+    width: 400px;
+    max-width: 100%;
+    margin-bottom: 10px;
+    border: 2px solid #cdcdcd; 
+}
+
+.tbodyClient{
+	border: 2px solid #cdcdcd;
+}
+
+.success{
+	border: 2px solid #cdcdcd;
+}
+
+.tbody {
     display: table-row-group;
     vertical-align: middle;
     border-color: inherit;
 }
 
 
-tr {
-    display: table-row;
-    vertical-align: inherit;
-    border-color: inherit;
-}
+
 
 .bodyMain{
 	
@@ -50,6 +63,7 @@ tr {
     margin-right:auto;
     background-color: rgba(219,203,187,0.5);
     height: auto;
+    min-height: 800px;
 }
 
 .filterPanel{
@@ -140,11 +154,20 @@ tr {
     border: 2px solid #cdcdcd;
     display: block;
 }
+.CarResultDayPrice{
+	width: 100px;
+    padding: 15px 10px 0 5px;
+    display: block;
+    float: left;
+    /* border-left: 2px solid #cdcdcd; */
+    border-right: 0;
+}
 
 .CarResultDetail{
 	width: 485px;
     padding: 15px 10px 0 5px;
     float: right;
+    	display:block;
     border-left: 2px solid #cdcdcd;
     border-right: 0;
 }
@@ -200,7 +223,7 @@ tr {
 				}
 				ul.menu li:hover ul{
 					transition:0.3s;
-					height:160px;
+					height:auto;
 					background:#fff;
 				}
 				

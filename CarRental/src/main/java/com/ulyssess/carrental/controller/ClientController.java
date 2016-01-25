@@ -3,6 +3,7 @@ package com.ulyssess.carrental.controller;
 import java.security.Principal;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import javax.validation.Valid;
 
@@ -59,6 +60,7 @@ public class ClientController {
 		model.addAttribute("gearBoxId",gearBoxId);
 		model.addAttribute("minPrice",minPrice);
 		model.addAttribute("maxPrice",maxPrice);
+		model.addAttribute("days",DateParse.getDateDiff(DateParse.parse(begin), DateParse.parse(end), TimeUnit.DAYS));
 		return "client-main";
 	}
 	

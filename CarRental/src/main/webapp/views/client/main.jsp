@@ -27,6 +27,7 @@
 		    maxDate: "+1m +1w +4d"  
 		});
 	  });
+ 
   </script>
 </head>
 	
@@ -92,59 +93,39 @@
   		</table>
   		<button type="submit">Submit</button>
 		</form>
-		<%-- 	<form action="allClientsAvailableModels" method="post">
-				<h2>Input Data</h2>
-					<p>Pick-Up Date: <input type="text" id="datepicker1" name="begin" value="${begin}"></p>
-					<p>Drop-Off Date: <input type="text" id="datepicker2" name="end" value="${end}"></p>
-					<p>Mark: 
-					<select name="mark" >
-						<option  value="0">All</option>
-						<c:forEach var="mark" items="${marks}">
-							<c:choose>
-    							<c:when test="${mark.id == markId}">
-        							 <option  value="${mark.id}" selected="selected" >${mark.markName}</option>     									
-    							</c:when>    
-    							<c:otherwise>
-        							 <option  value="${mark.id}" >${mark.markName}</option>
-   								</c:otherwise>
-							</c:choose>
-						</c:forEach>
-					</select>
-						
-					</p>
-					<p>Gear box: 
-						<select name="gearBox">
-							<option  value="-1">All</option>
-							<c:forEach var="gearBox" items="${gearBoxs}">
-								<c:choose>
-    								<c:when test="${gearBox.ordinal() == gearBoxId}">
-        								 <option value="${gearBox.ordinal()}" selected="selected" >${gearBox}</option>     									
-    								</c:when>    
-    								<c:otherwise>
-        								 <option value="${gearBox.ordinal()}">${gearBox}</option>
-   									</c:otherwise>
-								</c:choose>
-								
-							</c:forEach>
-						</select>
-					</p>
-					<p>min price: <input type="text" name="minPrice" value="${minPrice}"></p>
-					<p>max price: <input type="text" name="maxPrice" value="${maxPrice}"></p>
-								
-				<button type="submit">Submit</button>
-			</form> --%>
+		
 		</div>
 	
 		<div class="CarList">
 			<c:forEach var="model" items="${models}">
 			
 				<div class="CarResult">
+				<div class="CarResultDayPrice">
+					<table class="table">
+					<thead>
+      					<tr>
+  			      			<th><h3>Price for ${days} days:</h3></th>     			  			
+       					</tr>
+    				</thead>
+    				<tbody>
+      			
+       			 		<tr class="success">
+       			 			<td><h3>${days*model.dayPrice}</h3></td>        			
+        				</tr>
+        			</tbody>
+					</table>
+				</div>
 					
+					
+
 					<div class="CarResultDetail">
 					
 						<h4 class="headerCarList">
 							<img  src="data:image/jpeg;base64,${model.image}" height="150" width="250"/>
 						</h4>
+						
+
+						
 						<table class="table">
    			<thead>
       			<tr>

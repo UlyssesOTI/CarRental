@@ -13,7 +13,7 @@ public class DateParse {
 	}
 	
 	public static long getDateDiff(Date date1, Date date2, TimeUnit timeUnit) {
-	    long diffInMillies = date2.getTime() - date1.getTime();
+	    long diffInMillies = date2.getTime() - date1.getTime() +86400000;
 	    return timeUnit.convert(diffInMillies,TimeUnit.MILLISECONDS);
 	}
 }
