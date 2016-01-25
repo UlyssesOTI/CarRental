@@ -34,7 +34,7 @@
         				
         				<tr class="success">
        			 			<td></td>
-       			 			<td><a href="signIn">Sign in</a></td>        		        			
+       			 			<td><a href="signIn">Sign up</a></td>        		        			
         				</tr>
 	</tbody>
 	</table>
