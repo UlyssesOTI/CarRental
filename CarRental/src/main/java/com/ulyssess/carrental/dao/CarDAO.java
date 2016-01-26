@@ -12,6 +12,6 @@ public interface CarDAO extends EntityDAO<Car, Integer>{
 	
 	public List<Car> findByModelId(int modelId);
 	
-	public List<Car> findByAll(int marklId, double maxPrice, double minPrice);
+	public List<Car> findByAll(int marklId, int gearboxId, double maxPrice, double minPrice,Date begin, Date end);
 
 }

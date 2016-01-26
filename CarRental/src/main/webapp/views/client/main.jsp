@@ -27,6 +27,10 @@
 		    maxDate: "+1m +1w +4d"  
 		});
 	  });
+  function formSubmit(form)
+  {
+  document.getElementById(form).submit();
+  }
  
   </script>
 </head>
@@ -98,8 +102,12 @@
 	
 		<div class="CarList">
 			<c:forEach var="model" items="${models}">
-			
-				<div class="CarResult">
+			<form:form id="frm${model.id}" action="cReserveModel" method="post">
+								<input type="hidden" name="begin" value="${begin}">
+								<input type="hidden" name="end" value="${end}">
+								<input type="hidden" name="id" value="${model.id}">
+								
+				<div class="CarResult" onclick="formSubmit('frm${model.id}')" style="cursor: pointer;">
 				<div class="CarResultDayPrice">
 					<table class="table">
 					<thead>
@@ -156,12 +164,8 @@
         		</tr>
         	</tbody>
   		</table>
-  		<form:form action="cReserveModel" method="post">
-								<input type="hidden" name="begin" value="${begin}">
-								<input type="hidden" name="end" value="${end}">
-								<input type="hidden" name="id" value="${model.id}">
-								<button type="submit">Reserve</button>
-							</form:form>			
+  		
+							
 						<%-- <ul>
 							<li><h3>${model.markName}</h3></li>
 							<li><h3>${model.modelName}</h3></li>
@@ -179,7 +183,7 @@
 					</div>
 					
 				</div>		
-				
+				</form:form>			
 			</c:forEach>
 	
 		

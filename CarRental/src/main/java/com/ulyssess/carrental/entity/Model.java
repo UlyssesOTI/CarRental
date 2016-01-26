@@ -27,7 +27,6 @@ public class Model {
 	private GearBox gearBox;
 	private double dayPrice;
 	@Lob
-	@Column(length=100000)
 	private byte[] image;
 	private ModelClass modelClass;
 	@ManyToOne(cascade = {CascadeType.MERGE}, fetch = FetchType.LAZY)

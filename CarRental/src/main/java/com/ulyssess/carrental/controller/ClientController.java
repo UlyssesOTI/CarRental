@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -56,6 +57,10 @@ public class ClientController {
 		if(end.isEmpty()){
 			end = DateParse.format(new Date());
 		}		
+		
+		
+		
+		
 		List<ModelAllPageDTO> models = modelService.findAvailableModelsByPeriod(begin, end, markId, gearBoxId,minPrice, maxPrice);
 		model.addAttribute("models", models);
 		model.addAttribute("begin", begin);

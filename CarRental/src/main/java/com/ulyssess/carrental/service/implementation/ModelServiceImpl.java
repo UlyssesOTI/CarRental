@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.apache.commons.codec.binary.Base64;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +19,7 @@ import com.ulyssess.carrental.dao.ModelDAO;
 import com.ulyssess.carrental.dto.ModelAllPageDTO;
 import com.ulyssess.carrental.entity.Car;
 import com.ulyssess.carrental.entity.Model;
+import com.ulyssess.carrental.enums.GearBox;
 import com.ulyssess.carrental.service.ModelService;
 
 @Service
@@ -81,19 +83,13 @@ public class ModelServiceImpl implements ModelService{
 		Date beginDate = DateParse.parse(begin);
 		Date endDate = DateParse.parse(end);
 		Set<Model> resSet = new LinkedHashSet<Model>();
-		
 		int idMark = Integer.parseInt(markId);
 		int idGearBox = Integer.parseInt(gearBoxId);
 		
-		List<Car> allCars = carDAO.findByAll(idMark, Double.parseDouble(maxPrice), Double.parseDouble(minPrice));
-		List<Car> renredCars = carDAO.findRentedCars(beginDate, endDate);
-		allCars.removeAll(renredCars);
+		List<Car> allCars = carDAO.findByAll(idMark, idGearBox,  Double.parseDouble(maxPrice), Double.parseDouble(minPrice),beginDate, endDate);
+		
 		for (Car car : allCars) {
-			if(idGearBox < 0){
-				resSet.add(car.getModel());
-			}else if(car.getModel().getGearBox().ordinal()==idGearBox){
-				resSet.add(car.getModel());
-			}
+				resSet.add(car.getModel());			
 		}	
 		for (Model model : resSet) {
 			byte[] encodeBase64 = Base64.encodeBase64(model.getImage());
@@ -130,25 +126,29 @@ public class ModelServiceImpl implements ModelService{
 	public Model findByIdForEdit(String Id) {
 		int id=0;
 		Model carModel = null;
-		Model result = new Model();
 		try {
 			id = Integer.parseInt(Id);
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		}
 		if(id != 0){
+			
 			carModel = modelDAO.findByKey(Model.class, id);
-			result.setId(carModel.getId());
-			result.setImage(carModel.getImage());
-			result.setDayPrice(carModel.getDayPrice());
-			result.setGearBox(carModel.getGearBox());
-			result.setCars(carModel.getCars());
-			result.setMark(carModel.getMark());
-			result.setModelClass(carModel.getModelClass());
-			result.setModelName(carModel.getModelName());
-			result.setReservations(carModel.getReservations());
-			result.setSeats(carModel.getSeats());
+			if(carModel!=null){
+				
+			}
+			Hibernate.initialize(carModel.getId());
+			Hibernate.initialize(carModel.getImage());
+			Hibernate.initialize(carModel.getDayPrice());
+			Hibernate.initialize(carModel.getGearBox());
+			Hibernate.initialize(carModel.getCars());
+			Hibernate.initialize(carModel.getMark());
+			Hibernate.initialize(carModel.getModelClass());
+			Hibernate.initialize(carModel.getModelName());
+			Hibernate.initialize(carModel.getReservations());
+			Hibernate.initialize(carModel.getSeats());
 		}
-		return result;
+		Hibernate.initialize(carModel);
+		return carModel;
 	}
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,23 +20,7 @@ public class CarDAOImpl extends EntityDAOAbstract<Car, Integer> implements CarDA
 	private EntityManager entityManager;
 	
 	
-	@Transactional
-	public List<Car> findRentedCars(Date begin, Date end) {
-		List<Car> resList = null;
-			
-		resList = entityManager.
-				createQuery("SELECT "
-						+ "		c.car "
-						+ "	FROM Contract c "
-							+ "		WHERE (c.beginDate BETWEEN :start AND :end) "
-							+ "			OR (c.endDate BETWEEN :start AND :end) ",
-							Car.class).
-				setParameter("start", begin).
-				setParameter("end", end).
-				getResultList();
-				
-		return resList;
-	}
+	
 
 	@Transactional
 	public Car findByRegNumber(String regNumber) {
@@ -70,35 +55,63 @@ public class CarDAOImpl extends EntityDAOAbstract<Car, Integer> implements CarDA
 	}
 	
 	@Transactional
-	public List<Car> findByAll(int marklId,double maxPrice, double minPrice) {
+	public List<Car> findByAll(int marklId, int gearboxId, double maxPrice, double minPrice,Date begin, Date end) {
 		List<Car> resList = null;
 		
 		String query = "SELECT "
 				+ "		c "
 				+ "	FROM Car c "
-				+ "WHERE c.model.dayPrice >= :minPrice AND c.model.dayPrice <= :maxPrice";
+				+ "WHERE c.model.dayPrice >= :minPrice AND c.model.dayPrice <= :maxPrice"+
+				" AND c not in (SELECT "
+						+ "		c.car "
+						+ "	FROM Contract c "
+							+ "		WHERE (c.beginDate BETWEEN :start AND :end) "
+							+ "			OR (c.endDate BETWEEN :start AND :end) )";
+				
+		
 				if(marklId!=0){
 					query = query+ "	AND	c.model.mark.id = :marklId";
 				}
+				
+				if(gearboxId>=0){
+					query = query+ "	AND	c.model.gearBox.id = :gearboxId";
+				}
 			
+				TypedQuery<Car> Tquery = entityManager.createQuery(query,Car.class);
+				
+				Tquery.setParameter("maxPrice", maxPrice).
+				setParameter("minPrice", minPrice).
+				setParameter("start", begin).
+				setParameter("end", end);
+				
 				if(marklId!=0){
-					resList = entityManager.
-							createQuery(query,
-										Car.class).
-							setParameter("marklId", marklId).
-							setParameter("maxPrice", maxPrice).
-							setParameter("minPrice", minPrice).
-							getResultList();
-				}else{
-					resList = entityManager.
-							createQuery(query,
-										Car.class).
-							setParameter("maxPrice", maxPrice).
-							setParameter("minPrice", minPrice).
-							getResultList();
+					Tquery.setParameter("marklId", marklId);					
+				}
+				if(gearboxId>=0){
+					Tquery.setParameter("gearboxId", gearboxId);
 				}
 		
+				resList = Tquery.getResultList();
 			
+		return resList;
+	}
+	
+	
+	@Transactional
+	public List<Car> findRentedCars(Date begin, Date end) {
+		List<Car> resList = null;
+			
+		resList = entityManager.
+				createQuery("SELECT "
+						+ "		c.car "
+						+ "	FROM Contract c "
+							+ "		WHERE (c.beginDate BETWEEN :start AND :end) "
+							+ "			OR (c.endDate BETWEEN :start AND :end) ",
+							Car.class).
+				setParameter("start", begin).
+				setParameter("end", end).
+				getResultList();
+				
 		return resList;
 	}
 

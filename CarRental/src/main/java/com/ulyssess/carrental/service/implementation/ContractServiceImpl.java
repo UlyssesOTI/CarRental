@@ -78,6 +78,7 @@ public class ContractServiceImpl implements ContractService{
 		return contractDTOs;
 	}
 
+	@Transactional
 	public Object findByClientDTO(String begin, String end, String id) {
 		List<ContractDTO> contractDTOs = new ArrayList<ContractDTO>();
 		List<Client> clients = new ArrayList<Client>();
