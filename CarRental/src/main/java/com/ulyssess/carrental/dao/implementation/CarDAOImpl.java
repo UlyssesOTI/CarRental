@@ -12,6 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ulyssess.carrental.dao.CarDAO;
 import com.ulyssess.carrental.entity.Car;
+import com.ulyssess.carrental.entity.Model;
+import com.ulyssess.carrental.enums.GearBox;
 
 @Repository
 public class CarDAOImpl extends EntityDAOAbstract<Car, Integer> implements CarDAO{
@@ -55,29 +57,34 @@ public class CarDAOImpl extends EntityDAOAbstract<Car, Integer> implements CarDA
 	}
 	
 	@Transactional
-	public List<Car> findByAll(int marklId, int gearboxId, double maxPrice, double minPrice,Date begin, Date end) {
-		List<Car> resList = null;
+	public List<Model> findByAll(int marklId, String gearbox, double maxPrice, double minPrice,Date begin, Date end) {
+		List<Model> resList = null;
 		
-		String query = "SELECT "
-				+ "		c "
-				+ "	FROM Car c "
-				+ "WHERE c.model.dayPrice >= :minPrice AND c.model.dayPrice <= :maxPrice"+
-				" AND c not in (SELECT "
-						+ "		c.car "
-						+ "	FROM Contract c "
-							+ "		WHERE (c.beginDate BETWEEN :start AND :end) "
-							+ "			OR (c.endDate BETWEEN :start AND :end) )";
+		String query = 
+				"SELECT DISTINCT "+ 
+				"		c.model "+ 
+				"FROM Car c "+ 
+				"	WHERE c.model.dayPrice >= :minPrice "+ 
+				"		AND c.model.dayPrice <= :maxPrice"+
+				"		AND c not in "+ 
+				"			(SELECT "+ 
+						"		c.car "+ 
+						"	FROM Contract c "+
+							 "		WHERE (c.beginDate BETWEEN :start AND :end) "+ 
+							"			OR (c.endDate BETWEEN :start AND :end) )";
 				
 		
 				if(marklId!=0){
-					query = query+ "	AND	c.model.mark.id = :marklId";
+					query = query+
+					"	AND	c.model.mark.id = :marklId";
 				}
 				
-				if(gearboxId>=0){
-					query = query+ "	AND	c.model.gearBox.id = :gearboxId";
+				if(!gearbox.isEmpty()){
+					query = query+							
+					"	AND	c.model.gearBox = :gearbox";
 				}
 			
-				TypedQuery<Car> Tquery = entityManager.createQuery(query,Car.class);
+				TypedQuery<Model> Tquery = entityManager.createQuery(query,Model.class);
 				
 				Tquery.setParameter("maxPrice", maxPrice).
 				setParameter("minPrice", minPrice).
@@ -87,10 +94,10 @@ public class CarDAOImpl extends EntityDAOAbstract<Car, Integer> implements CarDA
 				if(marklId!=0){
 					Tquery.setParameter("marklId", marklId);					
 				}
-				if(gearboxId>=0){
-					Tquery.setParameter("gearboxId", gearboxId);
+				if(!gearbox.isEmpty()){
+					Tquery.setParameter("gearbox", GearBox.valueOf(gearbox));
 				}
-		
+				
 				resList = Tquery.getResultList();
 			
 		return resList;

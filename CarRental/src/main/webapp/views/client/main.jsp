@@ -31,6 +31,11 @@
   {
   document.getElementById(form).submit();
   }
+  
+  function formFilterSubmit(form, paramName, paramVal)
+  {
+  document.getElementById(form).setAttribute(paramName, paramVal).submit();
+  }
  
   </script>
 </head>
@@ -43,7 +48,10 @@
 	
 		<div class="filterPanel">
 		
-		<form action="AvailableModels" method="post">
+		<form id="frmFilter" method="post">
+		
+		
+		
 		<table class="table">
    			<thead>
       			<tr>
@@ -76,14 +84,14 @@
 					</td>
 					<td>
 						<select name="gearBox">
-							<option  value="-1">All</option>
+							<option  value="">All</option>
 							<c:forEach var="gearBox" items="${gearBoxs}">
 								<c:choose>
-    								<c:when test="${gearBox.ordinal() == gearBoxId}">
-        								 <option value="${gearBox.ordinal()}" selected="selected" >${gearBox}</option>     									
+    								<c:when test="${gearBox.name() == gearBoxId}">
+        								 <option value="${gearBox.name()}" selected="selected" >${gearBox}</option>     									
     								</c:when>    
     								<c:otherwise>
-        								 <option value="${gearBox.ordinal()}">${gearBox}</option>
+        								 <option value="${gearBox.name()}">${gearBox}</option>
    									</c:otherwise>
 								</c:choose>
 								
@@ -95,7 +103,24 @@
       			</tr>
           	</tbody>
   		</table>
-  		<button type="submit">Submit</button>
+  		
+  		
+  		<button  onclick="formFilterSubmit('frmFilter','action','AvailableModels')" value="Submit">Submit</button>
+  		
+  		
+  		
+  		<div class="pagination">
+    		<ul>
+            	<c:forEach var="i" begin="${1}" end="${pages}">           
+            		<button  onclick="formFilterSubmit('frmFilter','action','AvailableModels${i}')" value="${i}">${i}</button>
+            		
+                	<%-- <li class="active"><a href="${pageUrl}/${i}"><c:out value="${i}" /></a></li> --%>
+		       </c:forEach>
+      
+    		</ul>
+		</div>
+  		
+  		
 		</form>
 		
 		</div>
@@ -191,6 +216,9 @@
 
 
 	</div>
+	
+	 
+
 
 </body>
 </html>

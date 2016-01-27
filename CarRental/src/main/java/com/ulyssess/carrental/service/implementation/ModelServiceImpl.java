@@ -82,16 +82,16 @@ public class ModelServiceImpl implements ModelService{
 		List<ModelAllPageDTO> modelToPage = new ArrayList<ModelAllPageDTO>();
 		Date beginDate = DateParse.parse(begin);
 		Date endDate = DateParse.parse(end);
-		Set<Model> resSet = new LinkedHashSet<Model>();
+		//Set<Model> resSet = new LinkedHashSet<Model>();
 		int idMark = Integer.parseInt(markId);
-		int idGearBox = Integer.parseInt(gearBoxId);
 		
-		List<Car> allCars = carDAO.findByAll(idMark, idGearBox,  Double.parseDouble(maxPrice), Double.parseDouble(minPrice),beginDate, endDate);
 		
-		for (Car car : allCars) {
+		List<Model> models = carDAO.findByAll(idMark, gearBoxId,  Double.parseDouble(maxPrice), Double.parseDouble(minPrice),beginDate, endDate);
+		
+		/*for (Car car : allCars) {
 				resSet.add(car.getModel());			
-		}	
-		for (Model model : resSet) {
+		}	*/
+		for (Model model : models) {
 			byte[] encodeBase64 = Base64.encodeBase64(model.getImage());
 			String base64Encoded = "";
 			if(encodeBase64!= null){

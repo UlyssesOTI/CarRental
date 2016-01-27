@@ -3,6 +3,7 @@ package com.ulyssess.carrental.dao;
 import java.util.Date;
 import java.util.List;
 import com.ulyssess.carrental.entity.Car;
+import com.ulyssess.carrental.entity.Model;
 
 public interface CarDAO extends EntityDAO<Car, Integer>{
 	
@@ -12,6 +13,6 @@ public interface CarDAO extends EntityDAO<Car, Integer>{
 	
 	public List<Car> findByModelId(int modelId);
 	
-	public List<Car> findByAll(int marklId, int gearboxId, double maxPrice, double minPrice,Date begin, Date end);
+	public List<Model> findByAll(int marklId, String gearbox, double maxPrice, double minPrice,Date begin, Date end);
 
 }
