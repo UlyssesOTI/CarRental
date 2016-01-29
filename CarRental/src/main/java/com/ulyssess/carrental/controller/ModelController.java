@@ -1,6 +1,13 @@
 package com.ulyssess.carrental.controller;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +24,8 @@ import com.ulyssess.carrental.service.MarkService;
 import com.ulyssess.carrental.service.ModelService;
 import com.ulyssess.carrental.validator.FileClass;
 
+import javassist.ClassClassPath;
+
 @Controller
 public class ModelController {
 
@@ -28,8 +37,8 @@ public class ModelController {
 
 	
 	@RequestMapping(value="/mShowModels")
-	private String allModels(Model model){
-		model.addAttribute("models",modelService.findAllDTO());
+	private String allModels(Model model,HttpServletRequest request) throws IOException{
+		model.addAttribute("models",modelService.findAllDTO(request));
 		return "model-all";
 	}
 	
@@ -58,8 +67,8 @@ public class ModelController {
 			@Validated FileClass file,
 			@RequestParam(value="operation") String operation,
 			BindingResult result, 
-			Model model
-			){
+			Model model,
+			HttpServletRequest request){
 		
 		String returnVal = "redirect:/mShowModels";
 		MultipartFile multipartFile = file.getFile();
@@ -67,10 +76,18 @@ public class ModelController {
 			returnVal = "redirect:/mCreateModel";
 		}else{
 			byte[] image;
+			//String fullPath = request.getSession().getServletContext().getContextPath()getRealPath("tmp/images");
+			
 			try {
 				if(!multipartFile.isEmpty()){
-					image = multipartFile.getBytes();
-					carModel.setImage(image);
+					/*String fullPath = request.getSession().getServletContext().getContextPath();*/
+					String fullPath = request.getSession().getServletContext().getRealPath("");
+					FileOutputStream fos = new FileOutputStream(fullPath+"/"+carModel.getModelName()+".jpg",false);
+					fos.write(multipartFile.getBytes());
+					fos.close();
+					//image = multipartFile.getBytes();
+					//carModel.setImage(image);
+					carModel.setImageURL(carModel.getModelName()+".jpg");
 				}
 			} catch (IOException e) {
 				e.printStackTrace();

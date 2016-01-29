@@ -28,6 +28,8 @@ public class Model {
 	private double dayPrice;
 	@Lob
 	private byte[] image;
+	
+	private String imageURL;
 	private ModelClass modelClass;
 	@ManyToOne(cascade = {CascadeType.MERGE}, fetch = FetchType.LAZY)
 	private Mark mark;
@@ -41,12 +43,13 @@ public class Model {
 		
 	}
 		
-	public Model(String modelName, byte[] image, ModelClass modelClass, Mark mark) {
+	public Model(String modelName, byte[] image,String imageURL, ModelClass modelClass, Mark mark) {
 		super();
 		this.modelName = modelName;
 		this.image = image;
 		this.modelClass = modelClass;
 		this.mark = mark;
+		this.imageURL = imageURL;
 	}
 
 
@@ -129,6 +132,14 @@ public class Model {
 
 	public void setReservations(List<Reservation> reservations) {
 		this.reservations = reservations;
+	}
+
+	public String getImageURL() {
+		return imageURL;
+	}
+
+	public void setImageURL(String imageURL) {
+		this.imageURL = imageURL;
 	}
 		
 }

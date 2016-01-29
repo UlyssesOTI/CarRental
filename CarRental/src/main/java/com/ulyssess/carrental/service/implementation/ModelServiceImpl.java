@@ -1,5 +1,9 @@
 package com.ulyssess.carrental.service.implementation;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -7,7 +11,10 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.lang3.ArrayUtils;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -52,15 +59,52 @@ public class ModelServiceImpl implements ModelService{
 	}
 	
 	@Transactional
-	public List<ModelAllPageDTO> findAllDTO(){
+	public List<ModelAllPageDTO> findAllDTO(HttpServletRequest request) throws IOException{
 		List<ModelAllPageDTO> modelToPage = new ArrayList<ModelAllPageDTO>();
 		List<Model> allModels = modelDAO.findAll(Model.class);
 		for (Model model : allModels) {
-			byte[] encodeBase64 = Base64.encodeBase64(model.getImage());
+			
+			
+			
+			modelToPage.add(
+					new ModelAllPageDTO(model.getId(),
+							model.getSeats(),
+							model.getDayPrice(), 
+							model.getGearBox().toString(),
+							model.getModelName(),
+							model.getMark().getMarkName(),
+							"",model.getImageURL()));
+		}
+		return modelToPage;
+	}
+	
+	/*@Transactional
+	public List<ModelAllPageDTO> findAllDTO(HttpServletRequest request) throws IOException{
+		List<ModelAllPageDTO> modelToPage = new ArrayList<ModelAllPageDTO>();
+		List<Model> allModels = modelDAO.findAll(Model.class);
+		for (Model model : allModels) {
+			String fullPath = request.getSession().getServletContext().getRealPath("tmp/images");
+			List<Byte> byteList = new ArrayList<Byte>();
+			try {
+				
+				FileInputStream fis = new FileInputStream(fullPath+"/"+model.getModelName()+".jpg");
+				int c;
+				while((c =  fis.read()) != -1){
+					byteList.add((byte)c);
+				}
+			} catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			Byte[] encodeBase64;
+			byte[] encodeBase64b;			
+			encodeBase64 =  byteList.toArray(new Byte[byteList.size()]); 
+			encodeBase64b = Base64.encodeBase64(ArrayUtils.toPrimitive(encodeBase64));
 			String base64Encoded = "";
 			if(encodeBase64!= null){
 				try {
-					base64Encoded = new String(encodeBase64, "UTF-8");
+					base64Encoded = new String(encodeBase64b, "UTF-8");
 				} catch (UnsupportedEncodingException e) {
 					e.printStackTrace();
 				}
@@ -75,7 +119,7 @@ public class ModelServiceImpl implements ModelService{
 							base64Encoded));
 		}
 		return modelToPage;
-	}
+	}*/
 	
 	@Transactional
 	public List<ModelAllPageDTO> findAvailableModelsByPeriod(String begin, String end,String markId,String gearBoxId,String minPrice,String maxPrice){
@@ -107,7 +151,7 @@ public class ModelServiceImpl implements ModelService{
 					model.getGearBox().toString(),
 					model.getModelName(),
 					model.getMark().getMarkName(),
-					base64Encoded));
+					base64Encoded,model.getImageURL()));
 		}
 		return modelToPage;
 	}

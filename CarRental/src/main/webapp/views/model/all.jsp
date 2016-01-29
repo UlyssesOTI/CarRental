@@ -16,7 +16,12 @@
       			
        			 		<tr class="success">
        			 			<td><h3>Image:</h3></td>
-       			 			<td><h5><img  src="data:image/jpeg;base64,${model.image}" height="150" width="250"/></h5></td>        		        			
+       			 			
+       			 			<td><img 	src='<c:url value="${model.imageURL}"></c:url>'  height="150" width="250"/></td>
+       			 			<%-- <td><img 	src="${model.imageURL}"  height="150" width="250"/></td>  --%>
+       			 			
+       			 			
+       			 			<%-- <td><h5><img  src="data:image/jpeg;base64,${model.image}" height="150" width="250"/></h5></td>         --%>		        			
         				</tr>
         				
         				<tr class="success">
